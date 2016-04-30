@@ -1,3 +1,7 @@
+# Custom files
+ClawVM.mk
+ClawVM.txt
+
 # Object files
 *.o
 *.ko
