@@ -60,7 +60,7 @@ AS       := /usr/bin/as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/main.c$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.c$(ObjectSuffix) $(IntermediateDirectory)/vars.c$(ObjectSuffix) 
 
 
 
@@ -94,6 +94,14 @@ $(IntermediateDirectory)/main.c$(DependSuffix): main.c
 
 $(IntermediateDirectory)/main.c$(PreprocessSuffix): main.c
 	@$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.c$(PreprocessSuffix) "main.c"
+
+$(IntermediateDirectory)/vars.c$(ObjectSuffix): vars.c $(IntermediateDirectory)/vars.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/home/benedikt/.codelite/ClawVM/vars.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/vars.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/vars.c$(DependSuffix): vars.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/vars.c$(ObjectSuffix) -MF$(IntermediateDirectory)/vars.c$(DependSuffix) -MM "vars.c"
+
+$(IntermediateDirectory)/vars.c$(PreprocessSuffix): vars.c
+	@$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/vars.c$(PreprocessSuffix) "vars.c"
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

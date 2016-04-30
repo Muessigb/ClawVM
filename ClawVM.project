@@ -95,5 +95,7 @@
     <File Name="types.h"/>
     <File Name="config.h"/>
     <File Name="consts.h"/>
+    <File Name="vars.c"/>
+    <File Name="vars.h"/>
   </VirtualDirectory>
 </CodeLite_Project>

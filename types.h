@@ -3,6 +3,10 @@
 
 #include <stdint.h>
 
+typedef int16_t claw_num;
+typedef uint8_t claw_arr8[];
+typedef int16_t claw_arr16[];
+
 enum {
     VAR_TYPE_NULL,
     VAR_TYPE_NUM,
@@ -17,9 +21,5 @@ typedef struct {
 #endif
     uint16_t length;
 } claw_var;
-
-typedef struct {
-    
-} 
 
 #endif

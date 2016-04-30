@@ -26,6 +26,14 @@
    * Memory use:    3 (speed opt) or 5 (mem opt) bytes per var + actual data
    * Default:       96 variables (mem use: ~480 bytes [speed opt]; ~288 bytes [mem opt]) 
    * */
-  #define VSTACK_SIZE 96
+  #define VAR_STACK_SIZE 96
+  
+  /* *
+   * Variable pool size
+   * 
+   * Size of the variable data pool
+   * Default:       1024 bytes
+   * */
+  #define VAR_POOL_SIZE 1024
 
 #endif
