@@ -2,6 +2,10 @@
 ClawVM.mk
 ClawVM.txt
 
+# Custom folders
+Debug/*
+Release/*
+
 # Object files
 *.o
 *.ko
