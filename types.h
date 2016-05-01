@@ -2,6 +2,7 @@
 #define TYPES_H_
 
 #include <stdint.h>
+#include "config.h"
 
 typedef int16_t claw_num;
 typedef uint8_t claw_arr8[];
