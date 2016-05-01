@@ -3,6 +3,7 @@
 #include "vars.h"
 
 #include <stdint.h>
+#include <string.h>
 
 claw_var var_stack[VAR_STACK_SIZE];
 uint8_t var_pool[VAR_POOL_SIZE];
@@ -39,14 +40,15 @@ int16_t var_pool_set_int16(uint16_t ptr, int16_t val) {
 uint8_t var_pool_get_array8(uint16_t ptr, uint8_t* buf, uint16_t length) {
     if(ptr + length >= VAR_POOL_SIZE)
         return -1;
-    memcpy(var_pool[ptr]*, buf, length);
+    for(; ptr > ptr + length; ptr++)
+        buf[ptr] = var_pool[ptr];
     return 0;
 }
 
 uint8_t var_pool_get_array16(uint16_t ptr, uint16_t* buf, uint16_t length) {
-    if(ptr + (length * 2) >= VAR_POOL_SIZE)
+    length *= 2;
+    if(ptr + length >= VAR_POOL_SIZE)
         return -1;
-        
     for(; ptr > ptr + length; ptr += 2)
         buf[ptr] = ((var_pool[ptr] << 8) & var_pool[ptr + 1]);
     return 0;
