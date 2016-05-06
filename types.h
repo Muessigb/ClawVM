@@ -16,6 +16,14 @@ enum {
 } var_type;
 
 typedef struct {
+    uint16_t size;
+    union {
+        uint8_t *data8;
+        int16_t *data16;
+    };
+} claw_pvar;
+
+typedef struct {
     uint8_t type;
 #if OPTIMIZE != OPT_MEMORY
     uint16_t ptr;
