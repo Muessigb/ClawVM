@@ -8,18 +8,6 @@
 uint8_t claw_var_pool[VAR_POOL_SIZE];    /* the data pool */
 uint16_t claw_var_pool_len;              /* current length of the stack */
 
-claw_pvar* claw_pool_vget_r(uint8_t offset) {   /* offset from the last item in the pool */
-    uint16_t pool_index = 0;   /* the absolute index within the data pool */
-    uint16_t size;
-    
-    for(offset = claw_var_pool_len - offset; offset > 0; offset--) {
-        *size = *claw_var_pool + pool_index;
-        pool_index += size;
-    }
-    
-    return ((*claw_pvar) (*claw_var_pool + pool_index));
-}
-
 claw_pvar* claw_pool_vget_a(uint16_t index) {   /* absolute index of the item */
     uint16_t pool_index = 0;   /* the absolute index within the data pool */
     uint16_t size;
@@ -30,6 +18,10 @@ claw_pvar* claw_pool_vget_a(uint16_t index) {   /* absolute index of the item */
     }
     
     return ((*claw_pvar) (*claw_var_pool + pool_index));
+}
+
+claw_pvar* claw_pool_vget_r(uint8_t offset) {   /* offset from the last item in the pool */
+    return claw_pool_vget_a(claw_var_pool_len - offset);
 }
 
 uint16_t claw_pool_usage(void) {
