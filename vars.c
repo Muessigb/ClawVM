@@ -17,7 +17,7 @@ claw_pvar* claw_pool_vget_r(uint8_t offset) {   /* offset from the last item in 
         index += size;
     }
     
-    return ((*claw_pvar) (*var_pool + index));
+    return ((*claw_pvar) (*claw_var_pool + index));
 }
 
 claw_pvar* claw_pool_vget_a(uint16_t index) {
