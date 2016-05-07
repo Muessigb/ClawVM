@@ -2,7 +2,15 @@
 #define CONSTS_H_
 
 /* Optimisation constants */
-#define CLAW_OPT_SPEED       0
-#define CLAW_OPT_MEMORY      1
+enum {
+    CLAW_OPT_SPEED,
+    CLAW_OPT_MEMORY
+};
+
+enum {
+    CLAW_ERR_NONE,
+    CLAW_ERR_STACKUNDERFLOW,
+    CLAW_ERR_STACKOVERFLOW
+};
 
 #endif

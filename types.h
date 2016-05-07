@@ -14,6 +14,9 @@ typedef int16_t claw_long;
 typedef uint16_t claw_ptr;
 typedef claw_ptr claw_size;
 
+/* error type */
+typedef uint8_t claw_error;
+
 /* Pool var structs ahead */
 typedef struct {
     claw_size size;
