@@ -4,11 +4,11 @@
 
 #include <stdint.h>
 
-uint8_t claw_pool[VAR_POOL_SIZE];    /* the data pool */
+uint8_t claw_pool[CLAW_VAR_POOL_SIZE];    /* the data pool */
 uint16_t claw_pool_len = 0;          /* current length of the stack */
 
 void claw_pool_clear(void) { /* Clear the var pool */
-    for(claw_pool_len = VAR_POOL_SIZE; claw_pool_len > 0; claw_pool_len--)
+    for(claw_pool_len = CLAW_VAR_POOL_SIZE; claw_pool_len > 0; claw_pool_len--)
         claw_pool[claw_pool_len] = 0;
 }
 
@@ -52,7 +52,7 @@ claw_size claw_pool_usage(void) {
 }
 
 claw_pvar* claw_pool_vcreate(claw_size size) {  /* create raw pool item with size */
-    if(claw_pool_usage() + size < VAR_POOL_SIZE) {
+    if(claw_pool_usage() + size < CLAW_VAR_POOL_SIZE) {
         claw_pool_len++;
         claw_pvar* var;
         var = claw_pool_vget_r(0);
@@ -66,7 +66,7 @@ claw_pvar* claw_pool_vcreate(claw_size size) {  /* create raw pool item with siz
 claw_pvar_s* claw_pool_vcreate_s(claw_size size) {  /* create short pool item with size */
     size *= sizeof(claw_short);
     
-    if(claw_pool_usage() + size < VAR_POOL_SIZE) {
+    if(claw_pool_usage() + size < CLAW_VAR_POOL_SIZE) {
         claw_pool_len++;
         claw_pvar_s* var;
         var = claw_pool_vget_sr(0);
@@ -80,7 +80,7 @@ claw_pvar_s* claw_pool_vcreate_s(claw_size size) {  /* create short pool item wi
 claw_pvar_l* claw_pool_vcreate_l(claw_size size) {  /* create long pool item with size */
     size *= sizeof(claw_long);
     
-    if(claw_pool_usage() + size < VAR_POOL_SIZE) {
+    if(claw_pool_usage() + size < CLAW_VAR_POOL_SIZE) {
         claw_pool_len++;
         claw_pvar_l* var;
         var = claw_pool_vget_lr(0);
