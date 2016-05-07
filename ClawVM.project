@@ -97,6 +97,8 @@
     <File Name="consts.h"/>
     <File Name="vars.c"/>
     <File Name="vars.h"/>
+    <File Name="cpu.c"/>
+    <File Name="cpu.h"/>
   </VirtualDirectory>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>
