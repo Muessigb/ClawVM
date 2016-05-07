@@ -8,6 +8,9 @@ typedef int16_t claw_num;
 typedef uint8_t claw_arr8[];
 typedef int16_t claw_arr16[];
 
+typedef uint16_t claw_ptr;
+typedef claw_ptr claw_size;
+
 enum {
     VAR_TYPE_NULL,
     VAR_TYPE_NUM,
