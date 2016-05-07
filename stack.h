@@ -7,4 +7,6 @@
 extern claw_long claw_stack[];
 extern claw_ptr claw_stack_ptr;
 
+void    claw_stack_clear    (void);
+
 #endif
