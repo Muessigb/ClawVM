@@ -24,7 +24,7 @@ claw_size claw_pool_usage(void) {
     claw_ptr pool_item;     /* counter variable */
     claw_size pool_size = 0;     /* total pool size */
     
-    for(pool_item = claw_var_pool_len - 1; pool_item > 0; pool_item--)
+    for(pool_item = claw_var_pool_len; pool_item > 0; pool_item--)
         pool_size += (*((uint16_t *)(claw_var_pool + pool_size))) + sizeof(claw_size);
     
     return pool_size;
