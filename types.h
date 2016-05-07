@@ -17,6 +17,11 @@ typedef claw_ptr claw_size;
 /* Pool var structs ahead */
 typedef struct {
     claw_size size;
+    uint8_t data[];
+} claw_pvar;  /* raw (if you really need to) */
+
+typedef struct {
+    claw_size size;
     claw_short data[];
 } claw_pvar_s;  /* short */
 
