@@ -2,7 +2,7 @@
 #define CONSTS_H_
 
 /* Optimisation constants */
-#define OPT_SPEED       0
-#define OPT_MEMORY      1
+#define CLAW_OPT_SPEED       0
+#define CLAW_OPT_MEMORY      1
 
 #endif
