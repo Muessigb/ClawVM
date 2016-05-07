@@ -35,5 +35,12 @@
    * Default:       1024 bytes
    * */
   #define VAR_POOL_SIZE 1024
+  
+  /* *
+   * Clear arrays on deletion to prevent the next created one from being dirty
+   * 
+   * Default:       True
+   * */
+   #define VAR_POOL_CLEAN_ON_DESTROY
 
 #endif
