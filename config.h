@@ -11,26 +11,16 @@
    * */
   #define CLAW_OPTIMIZE CLAW_OPT_SPEED
 
-  /* *
-   * Virtual processor cores
-   * 
-   * Allows multiple, concurrent processes to run on multiple virtual
-   * Claw cores
-   * 
-   * Default:       1 core
-   * */
-  #define CLAW_CORES 1
-   
-  /* *
-   * Working stack size per core
+   /* *
+   * Working stack size
    * 
    * Maximum entries
-   * Default:       32 entries (mem use: 64 bytes used)
+   * Default:     32 entries (mem use: 64 bytes used)
    * */
   #define CLAW_STACK_SIZE 32
 
   /* *
-   * Variable stack size per core
+   * Variable stack size
    * 
    * Maximum variables allocated
    * Memory use:    3 (speed opt) or 5 (mem opt) bytes per var + actual data
