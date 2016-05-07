@@ -7,6 +7,7 @@
 extern uint8_t      claw_pool[];     /* the data pool */
 extern claw_size    claw_pool_len;  /* current length of the stack */
 
+void            claw_pool_clear     (void);
 claw_pvar*      claw_pool_vget_a    (claw_ptr index);
 claw_pvar*      claw_pool_vget_r    (claw_ptr offset);
 claw_pvar_s*    claw_pool_vget_sa   (claw_ptr index);

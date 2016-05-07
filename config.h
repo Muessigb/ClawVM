@@ -38,9 +38,10 @@
   
   /* *
    * Clear arrays on deletion to prevent the next created one from being dirty
+   * and also clears the pool on startup
    * 
    * Default:       True
    * */
-   #define VAR_POOL_CLEAN_ON_DESTROY
+   #define VAR_POOL_CLEAN
 
 #endif

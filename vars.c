@@ -5,7 +5,12 @@
 #include <stdint.h>
 
 uint8_t claw_pool[VAR_POOL_SIZE];    /* the data pool */
-uint16_t claw_pool_len;              /* current length of the stack */
+uint16_t claw_pool_len = 0;          /* current length of the stack */
+
+void claw_pool_clear(void) { /* Clear the var pool */
+    for(claw_pool_len = VAR_POOL_SIZE; claw_pool_len > 0; claw_pool_len--)
+        claw_pool[claw_pool_len] = 0;
+}
 
 claw_pvar* claw_pool_vget_a(claw_ptr index) {   /* absolute index of the item */
     claw_ptr pool_index = 0;   /* the absolute index within the data pool */
@@ -89,7 +94,7 @@ claw_pvar_l* claw_pool_vcreate_l(claw_size size) {  /* create long pool item wit
 uint8_t claw_pool_vdestroy(void) {      /* destroys the last item created */
     if(claw_pool_len) {
         
-#ifdef VAR_POOL_CLEAN_ON_DESTROY /* do we clean the array before destroying it? */
+#ifdef VAR_POOL_CLEAN /* do we clean the array before destroying it? */
         claw_pvar* var = claw_pool_vget_r(0);
         claw_size size = var->size - 1;
         
