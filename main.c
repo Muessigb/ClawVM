@@ -31,19 +31,3 @@ int main(int argc, char **argv)
     
     return 0;
 }
-
-/*
- * 
- * int8_t fastsin(uint8_t x)
-{
- return sintable[x];
-}
-
-int8_t sizesin(uint8_t x)
-{
- x &= 0b00111111;
- x -= 64;
- x &= 0b01111111;
- x = 64 - x;
- return sintable[x] * ((x >> 6) - 1); // x >> 6 = x / 128 * 2
-}*/

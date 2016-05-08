@@ -1,6 +1,7 @@
 #include "maths.h"
 #include "types.h"
 #include "stack.h"
+#include "trigonometry.h"
 #include <stdint.h>
 #include <stdlib.h>
 
@@ -443,4 +444,24 @@ claw_error claw_maths_bsl_c(claw_num bits)
         return CLAW_ERR_UNKNOWN;
         
     return claw_stack_push(val << bits);
+}
+
+claw_error claw_maths_sin(void)
+{
+    if(claw_stack_ptr < 1)
+        return CLAW_ERR_ARGCOUNT;
+    
+    claw_num val;
+    if(claw_stack_pop(&val) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+    
+#if CLAW_FULL_SINETABLE == CLAW_TRUE
+    return claw_stack_push(claw_sine_table[val]);
+#else
+    val &= 0b00111111;
+    val -= 64;
+    val &= 0b01111111;
+    val = 64 - val;
+    return claw_stack_push(sintable[val] * ((val >> 6) - 1)); /* x >> 6 = x / 128 * 2 */
+#endif
 }
