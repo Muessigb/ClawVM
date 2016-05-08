@@ -5,7 +5,7 @@
 #include "config.h"
 #include "types.h"
 
-/* the short claw numeric type, normally the smallest int on the target system */
+/* the short claw numeric type (for storing data), normally the smallest unsigned int on the target system */
 typedef uint8_t claw_short;
 /* the long claw numeric type, normally the largest int on the target system */
 typedef int16_t claw_long;
