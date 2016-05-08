@@ -14,15 +14,16 @@
     /* *
      * Provide constant alternatives for certain maths functions
      * 
-     * Default:     True
+     * CLAW_TRUE    (Default; recommended for compatability)
+     * CLAW_FALSE
      * */
-    #define CLAW_CONST_ALTFS
+    #define CLAW_CONST_ALTFS CLAW_TRUE
 
     /* *
      * Working stack size
      * 
      * Maximum entries
-     * Default:     32 entries (mem use: 64 bytes used)
+     * Default:     32 entries
      * */
     #define CLAW_STACK_SIZE 32
   
@@ -38,9 +39,10 @@
      * Clear arrays on deletion to prevent the next created one from being dirty
      * and also clears the pool on startup
      * 
-     * Default:     True
+     * CLAW_TRUE    (Default)
+     * CLAW_FALSE
      * */
-    #define CLAW_POOL_KEEP_CLEAN
+    #define CLAW_POOL_KEEP_CLEAN CLAW_TRUE
    
     /* *
      * Use full sine table
@@ -48,15 +50,16 @@
      * Uses a full table of sines instead of a half one with additional arithmetic.
      * The full table is faster but takes up double the space in static memory.
      * 
-     * Default:     True
+     * CLAW_TRUE    (Default)
+     * CLAW_FALSE
      * */
-    #define CLAW_FULL_SINETABLE
+    #define CLAW_FULL_SINETABLE CLAW_TRUE
     
     /* *
      * Sine table accuracy
      * 
      * CLAW_SINETABLE_8_1:  8 bit signed table,  2 degrees per step
-     * CLAW_SINETABLE_8_2:  8 bit signed table,  1 degree per step (Default)
+     * CLAW_SINETABLE_8_2:  8 bit signed table,  1 degree per step  (Default)
      * CLAW_SINETABLE_16_2: 16 bit signed table, 1 degree per step
      * CLAW_SINETABLE_16_4: 16 bit signed table, 0.5 degrees per step
      * CLAW_SINETABLE_32_2: 32 bit signed table, 1 degree per step

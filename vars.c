@@ -94,7 +94,7 @@ claw_pvar_l* claw_pool_vcreate_n(claw_size size) {  /* create long pool item wit
 uint8_t claw_pool_vdestroy(void) {      /* destroys the last item created */
     if(claw_pool_len) {
         
-#ifdef CLAW_POOL_KEEP_CLEAN /* do we clean the array before destroying it? */
+#if CLAW_POOL_KEEP_CLEAN == CLAW_TRUE /* do we clean the array before destroying it? */
         claw_pvar* var = claw_pool_vget_r(0);
         claw_size size = var->size - 1;
         

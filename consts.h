@@ -1,6 +1,12 @@
 #ifndef CONSTS_H_
 #define CONSTS_H_
 
+/* Boolean constants */
+enum {
+    CLAW_FALSE,
+    CLAW_TRUE
+}
+
 /* Optimisation constants */
 enum {
     CLAW_OPT_SPEED,
