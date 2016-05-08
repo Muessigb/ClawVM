@@ -17,7 +17,7 @@
      * CLAW_TRUE    (Default; recommended for compatability)
      * CLAW_FALSE
      * */
-    #define CLAW_CONST_ALTFS CLAW_TRUE
+    #define CLAW_CONST_ALTCONSTFCTS CLAW_TRUE
 
     /* *
      * Working stack size
