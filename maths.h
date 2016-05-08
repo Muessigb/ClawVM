@@ -9,5 +9,6 @@ claw_error  claw_maths_add  (void);
 claw_error  claw_maths_sub  (void);
 claw_error  claw_maths_mul  (void);
 claw_error  claw_maths_div  (void);
+claw_error  claw_maths_mod  (void);
 
 #endif
