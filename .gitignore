@@ -1,6 +1,7 @@
 # Custom files
 ClawVM.mk
 ClawVM.txt
+*.xy.mk
 
 # Custom folders
 Debug/*
