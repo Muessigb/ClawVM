@@ -22,6 +22,7 @@ int main(int argc, char **argv)
     claw_stack_pop(&sval2);
     claw_stack_push(15);
     claw_maths_inc();
+    claw_maths_pow_c(2);
     claw_maths_sqrt();
     claw_stack_pop(&sval3);
     
