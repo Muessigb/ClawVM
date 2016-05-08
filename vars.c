@@ -25,19 +25,19 @@ claw_pvar* claw_pool_vget_r(claw_ptr offset) {   /* offset from the last item in
     return claw_pool_vget_a(claw_pool_len - offset - 1);
 }
 
-claw_pvar_s* claw_pool_vget_sa(claw_ptr index) {   /* absolute index of the item */
+claw_pvar_s* claw_pool_vget_ba(claw_ptr index) {   /* absolute index of the item */
     return ((claw_pvar_s*) claw_pool_vget_a(index));
 }
 
-claw_pvar_s* claw_pool_vget_sr(claw_ptr offset) {   /* offset from the last item in the pool */
+claw_pvar_s* claw_pool_vget_br(claw_ptr offset) {   /* offset from the last item in the pool */
     return ((claw_pvar_s*) claw_pool_vget_r(offset));
 }
 
-claw_pvar_l* claw_pool_vget_la(claw_ptr index) {   /* absolute index of the item */
+claw_pvar_l* claw_pool_vget_na(claw_ptr index) {   /* absolute index of the item */
     return ((claw_pvar_l*) claw_pool_vget_a(index));
 }
 
-claw_pvar_l* claw_pool_vget_lr(claw_ptr offset) {   /* offset from the last item in the pool */
+claw_pvar_l* claw_pool_vget_nr(claw_ptr offset) {   /* offset from the last item in the pool */
     return ((claw_pvar_l*) claw_pool_vget_r(offset));
 }
 
@@ -63,27 +63,27 @@ claw_pvar* claw_pool_vcreate(claw_size size) {  /* create raw pool item with siz
     return 0;   /* error! too few pool space left! */
 }
 
-claw_pvar_s* claw_pool_vcreate_s(claw_size size) {  /* create short pool item with size */
-    size *= sizeof(claw_short);
+claw_pvar_s* claw_pool_vcreate_b(claw_size size) {  /* create short pool item with size */
+    size *= sizeof(claw_byte);
     
     if(claw_pool_usage() + size < CLAW_POOL_SIZE) {
         claw_pool_len++;
         claw_pvar_s* var;
-        var = claw_pool_vget_sr(0);
-        var->size = size * sizeof(claw_short);
+        var = claw_pool_vget_br(0);
+        var->size = size * sizeof(claw_byte);
         return var;
     }
     
     return 0;   /* error! too few pool space left! */
 }
 
-claw_pvar_l* claw_pool_vcreate_l(claw_size size) {  /* create long pool item with size */
-    size *= sizeof(claw_long);
+claw_pvar_l* claw_pool_vcreate_n(claw_size size) {  /* create long pool item with size */
+    size *= sizeof(claw_num);
     
     if(claw_pool_usage() + size < CLAW_POOL_SIZE) {
         claw_pool_len++;
         claw_pvar_l* var;
-        var = claw_pool_vget_lr(0);
+        var = claw_pool_vget_nr(0);
         var->size = size;
         return var;
     }

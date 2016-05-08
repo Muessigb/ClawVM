@@ -10,14 +10,14 @@ int main(int argc, char **argv)
     claw_pool_vcreate_s(5);*/
     claw_pvar_l* my_arr1;
     claw_pvar_s* my_arr2;
-    my_arr1 = claw_pool_vcreate_l(10); /*claw_pool_vget_la(0);*/
-    my_arr2 = claw_pool_vcreate_s(5); /*claw_pool_vget_sa(1);*/
+    my_arr1 = claw_pool_vcreate_n(10); /*claw_pool_vget_la(0);*/
+    my_arr2 = claw_pool_vcreate_b(5); /*claw_pool_vget_sa(1);*/
     my_arr1->data[5] = 420;
     my_arr2->data[3] = 37;
     claw_stack_push(989);
-    claw_long sval1;
-    claw_long sval2;
-    claw_long sval3;
+    claw_num sval1;
+    claw_num sval2;
+    claw_num sval3;
     claw_stack_peek(0, &sval1);
     claw_stack_pop(&sval2);
     claw_stack_push(15);

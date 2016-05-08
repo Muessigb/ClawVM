@@ -15,7 +15,7 @@ claw_error  claw_maths_dec      (void);
 claw_error  claw_maths_abs      (void);
 claw_error  claw_maths_rand     (void);
 claw_error  claw_maths_pow      (void);
-claw_error  claw_maths_pow_c    (claw_long val2);
+claw_error  claw_maths_pow_c    (claw_num val2);
 claw_error  claw_maths_sqrt     (void);
 claw_error  claw_maths_neg      (void);
 

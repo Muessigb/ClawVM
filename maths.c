@@ -9,8 +9,8 @@ claw_error claw_maths_add(void)
     if(claw_stack_ptr < 2)
         return CLAW_ERR_ARGCOUNT;
         
-    claw_long val1;
-    claw_long val2;
+    claw_num val1;
+    claw_num val2;
     if(claw_stack_pop(&val2) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
     if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
@@ -24,8 +24,8 @@ claw_error claw_maths_sub(void)
     if(claw_stack_ptr < 2)
         return CLAW_ERR_ARGCOUNT;
         
-    claw_long val1;
-    claw_long val2;
+    claw_num val1;
+    claw_num val2;
     if(claw_stack_pop(&val2) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
     if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
@@ -39,8 +39,8 @@ claw_error claw_maths_mul(void)
     if(claw_stack_ptr < 2)
         return CLAW_ERR_ARGCOUNT;
         
-    claw_long val1;
-    claw_long val2;
+    claw_num val1;
+    claw_num val2;
     if(claw_stack_pop(&val2) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
     if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
@@ -54,8 +54,8 @@ claw_error claw_maths_div(void)
     if(claw_stack_ptr < 2)
         return CLAW_ERR_ARGCOUNT;
         
-    claw_long val1;
-    claw_long val2;
+    claw_num val1;
+    claw_num val2;
     if(claw_stack_pop(&val2) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
     if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
@@ -72,8 +72,8 @@ claw_error claw_maths_mod(void)
     if(claw_stack_ptr < 2)
         return CLAW_ERR_ARGCOUNT;
         
-    claw_long val1;
-    claw_long val2;
+    claw_num val1;
+    claw_num val2;
     if(claw_stack_pop(&val2) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
     if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
@@ -90,7 +90,7 @@ claw_error claw_maths_inc(void)
     if(claw_stack_ptr < 1)
         return CLAW_ERR_ARGCOUNT;
         
-    claw_long val;
+    claw_num val;
     if(claw_stack_pop(&val) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
         
@@ -102,7 +102,7 @@ claw_error claw_maths_dec(void)
     if(claw_stack_ptr < 1)
         return CLAW_ERR_ARGCOUNT;
         
-    claw_long val;
+    claw_num val;
     if(claw_stack_pop(&val) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
         
@@ -114,7 +114,7 @@ claw_error claw_maths_abs(void)
     if(claw_stack_ptr < 1)
         return CLAW_ERR_ARGCOUNT;
         
-    claw_long val;
+    claw_num val;
     if(claw_stack_pop(&val) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
         
@@ -126,7 +126,7 @@ claw_error claw_maths_rand(void)
     if(claw_stack_ptr < 1)
         return CLAW_ERR_ARGCOUNT;
         
-    claw_long val;
+    claw_num val;
     if(claw_stack_pop(&val) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
         
@@ -138,26 +138,26 @@ claw_error claw_maths_pow(void)
     if(claw_stack_ptr < 2)
         return CLAW_ERR_ARGCOUNT;
         
-    claw_long val2;
+    claw_num val2;
     if(claw_stack_pop(&val2) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
     
     return claw_maths_pow_c(val2);
 }
 
-claw_error claw_maths_pow_c(claw_long val2)
+claw_error claw_maths_pow_c(claw_num val2)
 {
     if(claw_stack_ptr < 1)
         return CLAW_ERR_ARGCOUNT;
         
-    claw_long val1;
+    claw_num val1;
     if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
         
     if(val2 < 0)
         return CLAW_ERR_OUTOFBOUNDS;
     
-    claw_long res = val2;
+    claw_num res = val2;
     
     for(; val2 > 0; val2--)
         res *= val2;
@@ -175,12 +175,12 @@ claw_error claw_maths_sqrt(void)
     if(claw_stack_ptr < 1)
         return CLAW_ERR_ARGCOUNT;
         
-    claw_long op;
+    claw_num op;
     if(claw_stack_pop(&op) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
     
-    claw_long res = 0;
-    claw_long one = ((claw_long) 1) << ((sizeof(claw_long) * 8) - 2);
+    claw_num res = 0;
+    claw_num one = ((claw_num) 1) << ((sizeof(claw_num) * 8) - 2);
 
     /* "one" starts at the highest power of four <= than the argument. */
     while (one > op)
@@ -208,7 +208,7 @@ claw_error claw_maths_neg(void)
     if(claw_stack_ptr < 1)
         return CLAW_ERR_ARGCOUNT;
         
-    claw_long val;
+    claw_num val;
     if(claw_stack_pop(&val) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
         

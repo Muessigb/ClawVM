@@ -3,7 +3,7 @@
 #include "types.h"
 #include "consts.h"
 
-claw_long claw_stack[CLAW_STACK_SIZE];
+claw_num claw_stack[CLAW_STACK_SIZE];
 claw_ptr claw_stack_ptr;
 
 void claw_stack_clear(void)
@@ -12,7 +12,7 @@ void claw_stack_clear(void)
         claw_stack[claw_stack_ptr] = 0;
 }
 
-claw_error claw_stack_push(claw_long value)
+claw_error claw_stack_push(claw_num value)
 {
     if(claw_stack_ptr >= CLAW_STACK_SIZE)
         return CLAW_ERR_STACKOVERFLOW;
@@ -22,7 +22,7 @@ claw_error claw_stack_push(claw_long value)
     return CLAW_ERR_NONE;
 }
 
-claw_error claw_stack_pop(claw_long* value)
+claw_error claw_stack_pop(claw_num* value)
 {
     if(!claw_stack_ptr)
         return CLAW_ERR_STACKUNDERFLOW;
@@ -33,7 +33,7 @@ claw_error claw_stack_pop(claw_long* value)
     return CLAW_ERR_NONE;
 }
 
-claw_error claw_stack_peek(claw_ptr offset, claw_long* value)
+claw_error claw_stack_peek(claw_ptr offset, claw_num* value)
 {
     if(offset >= CLAW_STACK_SIZE)
         return CLAW_ERR_OUTOFBOUNDS;
