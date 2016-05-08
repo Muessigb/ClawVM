@@ -133,6 +133,38 @@ claw_error claw_maths_rand(void)
     return claw_stack_push(rand() % val);
 }
 
+claw_error claw_maths_pow(void)
+{
+    if(claw_stack_ptr < 2)
+        return CLAW_ERR_ARGCOUNT;
+        
+    claw_long val2;
+    if(claw_stack_pop(&val2) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+    
+    return claw_maths_pow_c(val2);
+}
+
+claw_error claw_maths_pow_c(claw_long val2)
+{
+    if(claw_stack_ptr < 1)
+        return CLAW_ERR_ARGCOUNT;
+        
+    claw_long val1;
+    if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+        
+    if(val2 < 0)
+        return CLAW_ERR_OUTOFBOUNDS;
+    
+    claw_long res = val2;
+    
+    for(; val2 > 0; val2--)
+        res *= val2;
+    
+    return claw_stack_push(res);
+}
+
 /* *
  * Fast squareroot function,
  * adapted from Craig McQueen's answer on StackOverflow
@@ -169,4 +201,16 @@ claw_error claw_maths_sqrt(void)
     }
     
     return claw_stack_push(res);
+}
+
+claw_error claw_maths_neg(void)
+{
+    if(claw_stack_ptr < 1)
+        return CLAW_ERR_ARGCOUNT;
+        
+    claw_long val;
+    if(claw_stack_pop(&val) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+        
+    return claw_stack_push(-val);
 }
