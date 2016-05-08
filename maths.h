@@ -12,5 +12,7 @@ claw_error  claw_maths_div  (void);
 claw_error  claw_maths_mod  (void);
 claw_error  claw_maths_inc  (void);
 claw_error  claw_maths_dec  (void);
+claw_error  claw_maths_abs  (void);
+claw_error  claw_maths_rand (void);
 
 #endif

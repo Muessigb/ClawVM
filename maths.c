@@ -2,6 +2,7 @@
 #include "types.h"
 #include "stack.h"
 #include <stdint.h>
+#include <stdlib.h>
 
 claw_error claw_maths_add(void)
 {
@@ -96,4 +97,28 @@ claw_error claw_maths_dec(void)
         return CLAW_ERR_UNKNOWN;
         
     return claw_stack_push(val - 1);
+}
+
+claw_error claw_maths_abs(void)
+{
+    if(claw_stack_ptr < 1)
+        return CLAW_ERR_ARGCOUNT;
+        
+    claw_long val;
+    if(claw_stack_pop(&val) == CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+        
+    return claw_stack_push(abs(val));
+}
+
+claw_error claw_maths_rand(void)
+{
+    if(claw_stack_ptr < 1)
+        return CLAW_ERR_ARGCOUNT;
+        
+    claw_long val;
+    if(claw_stack_pop(&val) == CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+        
+    return claw_stack_push(rand() % val);
 }
