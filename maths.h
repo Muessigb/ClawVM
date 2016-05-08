@@ -35,5 +35,7 @@ claw_error  claw_maths_bsr      (void);
 claw_error  claw_maths_bsr_c    (claw_num bits);
 claw_error  claw_maths_bsl      (void);
 claw_error  claw_maths_bsl_c    (claw_num bits);
+claw_error  claw_maths_sin      (void);
+claw_error  claw_maths_cos      (void);
 
 #endif
