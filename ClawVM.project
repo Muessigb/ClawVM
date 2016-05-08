@@ -103,6 +103,7 @@
     <File Name="stack.h"/>
     <File Name="maths.c"/>
     <File Name="maths.h"/>
+    <File Name="trigonometry.h"/>
   </VirtualDirectory>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>

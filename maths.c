@@ -11,7 +11,9 @@ claw_error claw_maths_add(void)
         
     claw_long val1;
     claw_long val2;
-    if(claw_stack_pop(&val1) != CLAW_ERR_NONE || claw_stack_pop(&val2) != CLAW_ERR_NONE)
+    if(claw_stack_pop(&val2) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+    if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
         
     return claw_stack_push(val1 + val2);
@@ -24,7 +26,9 @@ claw_error claw_maths_sub(void)
         
     claw_long val1;
     claw_long val2;
-    if(claw_stack_pop(&val1) != CLAW_ERR_NONE || claw_stack_pop(&val2) != CLAW_ERR_NONE)
+    if(claw_stack_pop(&val2) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+    if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
         
     return claw_stack_push(val1 - val2);
@@ -37,7 +41,9 @@ claw_error claw_maths_mul(void)
         
     claw_long val1;
     claw_long val2;
-    if(claw_stack_pop(&val1) != CLAW_ERR_NONE || claw_stack_pop(&val2) != CLAW_ERR_NONE)
+    if(claw_stack_pop(&val2) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+    if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
         
     return claw_stack_push(val1 * val2);
@@ -50,7 +56,9 @@ claw_error claw_maths_div(void)
         
     claw_long val1;
     claw_long val2;
-    if(claw_stack_pop(&val1) != CLAW_ERR_NONE || claw_stack_pop(&val2) != CLAW_ERR_NONE)
+    if(claw_stack_pop(&val2) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+    if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
         
     if(val2 == 0)
@@ -66,7 +74,9 @@ claw_error claw_maths_mod(void)
         
     claw_long val1;
     claw_long val2;
-    if(claw_stack_pop(&val1) != CLAW_ERR_NONE || claw_stack_pop(&val2) != CLAW_ERR_NONE)
+    if(claw_stack_pop(&val2) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+    if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
         
     if(val2 == 0)
