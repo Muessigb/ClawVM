@@ -101,6 +101,8 @@
     <File Name="cpu.h"/>
     <File Name="stack.c"/>
     <File Name="stack.h"/>
+    <File Name="maths.c"/>
+    <File Name="maths.h"/>
   </VirtualDirectory>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>
