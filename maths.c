@@ -122,3 +122,41 @@ claw_error claw_maths_rand(void)
         
     return claw_stack_push(rand() % val);
 }
+
+/* *
+ * Fast squareroot function,
+ * adapted from Craig McQueen's answer on StackOverflow
+ * (http://stackoverflow.com/a/1101217)
+ * */
+claw_error claw_maths_sqrt(void)
+{
+    if(claw_stack_ptr < 1)
+        return CLAW_ERR_ARGCOUNT;
+        
+    claw_long op;
+    if(claw_stack_pop(&op) == CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+    
+    claw_long res = 0;
+    claw_long one = ((claw_long) 1) << ((sizeof(claw_long) * 8) - 2);
+
+    // "one" starts at the highest power of four <= than the argument.
+    while (one > op)
+        one >>= 2;
+
+    while (one != 0) {
+        if (op >= res + one) {
+            op = op - (res + one);
+            res = res +  2 * one;
+        }
+        res >>= 1;
+        one >>= 2;
+    }
+
+    /* Do arithmetic rounding to nearest integer */
+    if (op > res) {
+        res++;
+    }
+    
+    return claw_stack_push(res);
+}
