@@ -138,34 +138,39 @@ claw_error claw_maths_pow(void)
     if(claw_stack_ptr < 2)
         return CLAW_ERR_ARGCOUNT;
         
-    claw_num val2;
-    if(claw_stack_pop(&val2) != CLAW_ERR_NONE)
+    claw_num exp;
+    if(claw_stack_pop(&exp) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
     
-    return claw_maths_pow_c(val2);
+    return claw_maths_pow_c(exp);
 }
 
-claw_error claw_maths_pow_c(claw_num val2)
+/* *
+ * Fast power of function,
+ * adapted from Elias Yarrkov's answer on StackOverflow
+ * (http://stackoverflow.com/a/101613)
+ * */
+claw_error claw_maths_pow_c(claw_num exp)
 {
     if(claw_stack_ptr < 1)
         return CLAW_ERR_ARGCOUNT;
         
-    claw_num val1;
-    if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
+    claw_num base;
+    if(claw_stack_pop(&base) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
         
-    if(val2 < 0)
+    if(exp < 0)
         return CLAW_ERR_OUTOFBOUNDS;
     
-    claw_num res;
+    claw_num result = 1;
+    while (exp) {
+        if (exp & 1)
+            result *= base;
+        exp >>= 1;
+        base *= base;
+    }
     
-    if(val2 > 0) {
-        for(res = val2 - 1; val2 > 0; val2--)
-            res *= val1;
-    } else
-        res = 1;
-    
-    return claw_stack_push(res);
+    return claw_stack_push(result);
 }
 
 /* *
