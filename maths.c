@@ -19,6 +19,18 @@ claw_error claw_maths_add(void)
     return claw_stack_push(val1 + val2);
 }
 
+claw_error claw_maths_add_c(claw_num val2)
+{
+    if(claw_stack_ptr < 1)
+        return CLAW_ERR_ARGCOUNT;
+        
+    claw_num val1;
+    if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+        
+    return claw_stack_push(val1 + val2);
+}
+
 claw_error claw_maths_sub(void)
 {
     if(claw_stack_ptr < 2)
@@ -34,6 +46,18 @@ claw_error claw_maths_sub(void)
     return claw_stack_push(val1 - val2);
 }
 
+claw_error claw_maths_sub_c(claw_num val2)
+{
+    if(claw_stack_ptr < 1)
+        return CLAW_ERR_ARGCOUNT;
+        
+    claw_num val1;
+    if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+        
+    return claw_stack_push(val1 - val2);
+}
+
 claw_error claw_maths_mul(void)
 {
     if(claw_stack_ptr < 2)
@@ -43,6 +67,18 @@ claw_error claw_maths_mul(void)
     claw_num val2;
     if(claw_stack_pop(&val2) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
+    if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+        
+    return claw_stack_push(val1 * val2);
+}
+
+claw_error claw_maths_mul_c(claw_num val2)
+{
+    if(claw_stack_ptr < 1)
+        return CLAW_ERR_ARGCOUNT;
+        
+    claw_num val1;
     if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
         
@@ -67,6 +103,24 @@ claw_error claw_maths_div(void)
     return claw_stack_push(val1 / val2);
 }
 
+claw_error claw_maths_div_c(claw_num val2)
+{
+    if(claw_stack_ptr < 1)
+        return CLAW_ERR_ARGCOUNT;
+        
+    claw_num val1;
+    if(claw_stack_pop(&val2) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+    if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+        
+    if(val2 == 0)
+        return CLAW_ERR_DIVBYZERO;
+        
+    return claw_stack_push(val1 / val2);
+}
+
+
 claw_error claw_maths_mod(void)
 {
     if(claw_stack_ptr < 2)
@@ -74,6 +128,23 @@ claw_error claw_maths_mod(void)
         
     claw_num val1;
     claw_num val2;
+    if(claw_stack_pop(&val2) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+    if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+        
+    if(val2 == 0)
+        return CLAW_ERR_DIVBYZERO;
+        
+    return claw_stack_push(val1 % val2);
+}
+
+claw_error claw_maths_mod_c(claw_num val2)
+{
+    if(claw_stack_ptr < 1)
+        return CLAW_ERR_ARGCOUNT;
+        
+    claw_num val1;
     if(claw_stack_pop(&val2) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
     if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
@@ -126,11 +197,16 @@ claw_error claw_maths_rand(void)
     if(claw_stack_ptr < 1)
         return CLAW_ERR_ARGCOUNT;
         
-    claw_num val;
-    if(claw_stack_pop(&val) != CLAW_ERR_NONE)
+    claw_num max;
+    if(claw_stack_pop(&max) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
         
-    return claw_stack_push(rand() % val);
+    return claw_stack_push(rand() % max);
+}
+
+claw_error claw_maths_rand_c(claw_num max)
+{
+    return claw_stack_push(rand() % max);
 }
 
 claw_error claw_maths_pow(void)
@@ -249,6 +325,18 @@ claw_error claw_maths_and(void)
     return claw_stack_push(val1 & val2);
 }
 
+claw_error claw_maths_and_c(claw_num val2)
+{
+    if(claw_stack_ptr < 1)
+        return CLAW_ERR_ARGCOUNT;
+        
+    claw_num val1;
+    if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+        
+    return claw_stack_push(val1 & val2);
+}
+
 claw_error claw_maths_or(void)
 {
     if(claw_stack_ptr < 2)
@@ -258,6 +346,18 @@ claw_error claw_maths_or(void)
     claw_num val2;
     if(claw_stack_pop(&val2) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
+    if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+        
+    return claw_stack_push(val1 | val2);
+}
+
+claw_error claw_maths_or_c(claw_num val2)
+{
+    if(claw_stack_ptr < 1)
+        return CLAW_ERR_ARGCOUNT;
+        
+    claw_num val1;
     if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
         return CLAW_ERR_UNKNOWN;
         
@@ -277,4 +377,70 @@ claw_error claw_maths_xor(void)
         return CLAW_ERR_UNKNOWN;
         
     return claw_stack_push(val1 ^ val2);
+}
+
+claw_error claw_maths_xor_c(claw_num val2)
+{
+    if(claw_stack_ptr < 1)
+        return CLAW_ERR_ARGCOUNT;
+        
+    claw_num val1;
+    if(claw_stack_pop(&val1) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+        
+    return claw_stack_push(val1 ^ val2);
+}
+
+claw_error claw_maths_bsr(void)
+{
+    if(claw_stack_ptr < 2)
+        return CLAW_ERR_ARGCOUNT;
+        
+    claw_num val;
+    claw_num bits;
+    if(claw_stack_pop(&bits) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+    if(claw_stack_pop(&val) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+        
+    return claw_stack_push(val >> bits);
+}
+
+claw_error claw_maths_bsr_c(claw_num bits)
+{
+    if(claw_stack_ptr < 1)
+        return CLAW_ERR_ARGCOUNT;
+        
+    claw_num val;
+    if(claw_stack_pop(&val) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+        
+    return claw_stack_push(val >> bits);
+}
+
+claw_error claw_maths_bsl(void)
+{
+    if(claw_stack_ptr < 2)
+        return CLAW_ERR_ARGCOUNT;
+        
+    claw_num val;
+    claw_num bits;
+    if(claw_stack_pop(&bits) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+    if(claw_stack_pop(&val) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+        
+    return claw_stack_push(val << bits);
+}
+
+claw_error claw_maths_bsl_c(claw_num bits)
+{
+    if(claw_stack_ptr < 1)
+        return CLAW_ERR_ARGCOUNT;
+        
+    claw_num val;
+    if(claw_stack_pop(&val) != CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+        
+    return claw_stack_push(val << bits);
 }

@@ -5,7 +5,7 @@
 enum {
     CLAW_FALSE,
     CLAW_TRUE
-}
+};
 
 /* Optimisation constants */
 enum {
