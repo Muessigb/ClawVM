@@ -24,6 +24,23 @@ int main(int argc, char **argv)
     claw_maths_inc();
     claw_maths_pow_c(2);
     claw_maths_sqrt();
+    claw_maths_abs();
+    claw_stack_push(26);
+    claw_maths_add();
+    claw_stack_push(28);
+    claw_maths_sub();
+    claw_stack_dup();
+    claw_maths_mul();
+    claw_stack_push(2);
+    claw_maths_div();
+    claw_maths_inc();
+    claw_maths_dec();
+    claw_maths_rand_c(10);
+    claw_maths_neg();
+    claw_stack_push(45);
+    claw_maths_sin();
+    claw_maths_add();
+    claw_maths_sub();
     claw_stack_pop(&sval3);
     
     printf("Size 1: %d\nSize 2: %d\nValue 1.5: %d\nValue 2.3: %d\nSValue 1: %d\nSValue 2: %d\nSValue 3: %d\n",
