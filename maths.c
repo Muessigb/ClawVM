@@ -157,10 +157,13 @@ claw_error claw_maths_pow_c(claw_num val2)
     if(val2 < 0)
         return CLAW_ERR_OUTOFBOUNDS;
     
-    claw_num res = val2;
+    claw_num res;
     
-    for(; val2 > 0; val2--)
-        res *= val2;
+    if(val2 > 0) {
+        for(res = val2 - 1; val2 > 0; val2--)
+            res *= val1;
+    } else
+        res = 1;
     
     return claw_stack_push(res);
 }
@@ -196,9 +199,8 @@ claw_error claw_maths_sqrt(void)
     }
 
     /* Do arithmetic rounding to nearest integer */
-    if (op > res) {
+    if (op > res)
         res++;
-    }
     
     return claw_stack_push(res);
 }
