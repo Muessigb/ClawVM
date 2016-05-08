@@ -104,6 +104,8 @@
     <File Name="maths.c"/>
     <File Name="maths.h"/>
     <File Name="trigonometry.h"/>
+    <File Name="logic.c"/>
+    <File Name="logic.h"/>
   </VirtualDirectory>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>
