@@ -140,7 +140,7 @@ claw_error claw_maths_sqrt(void)
     claw_long res = 0;
     claw_long one = ((claw_long) 1) << ((sizeof(claw_long) * 8) - 2);
 
-    // "one" starts at the highest power of four <= than the argument.
+    /* "one" starts at the highest power of four <= than the argument. */
     while (one > op)
         one >>= 2;
 
