@@ -73,3 +73,27 @@ claw_error claw_maths_mod(void)
         
     return claw_stack_push(val1 % val2);
 }
+
+claw_error claw_maths_inc(void)
+{
+    if(claw_stack_ptr < 1)
+        return CLAW_ERR_ARGCOUNT;
+        
+    claw_long val;
+    if(claw_stack_pop(&val) == CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+        
+    return claw_stack_push(val + 1);
+}
+
+claw_error claw_maths_dec(void)
+{
+    if(claw_stack_ptr < 1)
+        return CLAW_ERR_ARGCOUNT;
+        
+    claw_long val;
+    if(claw_stack_pop(&val) == CLAW_ERR_NONE)
+        return CLAW_ERR_UNKNOWN;
+        
+    return claw_stack_push(val - 1);
+}
