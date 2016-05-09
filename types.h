@@ -12,6 +12,7 @@ typedef int16_t claw_num;
 
 /* the types used for large chunks of data */
 typedef uint16_t claw_ptr;
+typedef int16_t claw_rptr;
 typedef claw_ptr claw_size;
 
 /* error type */

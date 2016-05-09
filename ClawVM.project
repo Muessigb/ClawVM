@@ -106,6 +106,9 @@
     <File Name="trigonometry.h"/>
     <File Name="logic.c"/>
     <File Name="logic.h"/>
+    <File Name="hardware.h"/>
+    <File Name="hardware_PC.c"/>
+    <File Name="hardware_PC.h"/>
   </VirtualDirectory>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>

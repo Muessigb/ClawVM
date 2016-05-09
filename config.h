@@ -4,12 +4,24 @@
 #include "consts.h"
 
     /* *
-     * Code optimisation
+     * Hardware
      * 
-     * CLAW_OPT_SPEED:   Optimize for speed, not memory (Default)
-     * CLAW_OPT_MEMORY:  Optimize for memory, not speed
+     * Unique specifier of the target hardware
+     * Default:     PC
      * */
-    #define CLAW_OPTIMIZE CLAW_OPT_SPEED
+    #define CLAW_TARGET PC
+    
+    /* *
+     * Filesystem support
+     * 
+     * Does the target system have a file system.
+     * If so, this will enable dynamic linking and
+     * possibly support for file operations.
+     * 
+     * CLAW_TRUE    (Default)
+     * CLAW_FALSE
+     * */
+    #define CLAW_FILESYSTEM_SUPPORT CLAW_FALSE
 
     /* *
      * Working stack size
