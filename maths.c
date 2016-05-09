@@ -30,14 +30,14 @@ claw_error claw_maths_mod(void)
     return claw_maths(CLAW_MATHS_MOD);
 }
 
-claw_error claw_maths_inc(void)
+claw_error claw_maths_icr(void)
 {
-    return claw_maths(CLAW_MATHS_INC);
+    return claw_maths(CLAW_MATHS_ICR);
 }
 
-claw_error claw_maths_dec(void)
+claw_error claw_maths_dcr(void)
 {
-    return claw_maths(CLAW_MATHS_DEC);
+    return claw_maths(CLAW_MATHS_DCR);
 }
 
 claw_error claw_maths_abs(void)
@@ -120,7 +120,7 @@ claw_error claw_maths(claw_instr action)
     if(action > CLAW_MATHS_BSL)
         return CLAW_ERR_OUTOFBOUNDS;
     
-    if(action >= CLAW_MATHS_INC && action <= CLAW_MATHS_NOT) {
+    if(action >= CLAW_MATHS_ICR && action <= CLAW_MATHS_NOT) {
         if(claw_stack_ptr < 1)
             return CLAW_ERR_ARGCOUNT;
         
@@ -130,10 +130,10 @@ claw_error claw_maths(claw_instr action)
             return CLAW_ERR_UNKNOWN;
         
         switch(action) {
-            case CLAW_MATHS_INC:
+            case CLAW_MATHS_ICR:
                 res = val + 1;
                 break;
-            case CLAW_MATHS_DEC:
+            case CLAW_MATHS_DCR:
                 res = val - 1;
                 break;
             case CLAW_MATHS_ABS:
@@ -188,7 +188,7 @@ claw_error claw_maths(claw_instr action)
         }
         
         return claw_stack_push(res);
-    } else if(action >= CLAW_MATHS_INC && action <= CLAW_MATHS_NOT) {
+    } else if(action >= CLAW_MATHS_ICR && action <= CLAW_MATHS_NOT) {
         if(claw_stack_ptr < 2)
             return CLAW_ERR_ARGCOUNT;
         
