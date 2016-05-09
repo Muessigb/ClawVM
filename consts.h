@@ -35,4 +35,30 @@ enum {
     CLAW_SINETABLE_32_8     /* 32 bit signed table, 0.25 degrees per step */
 };
 
+/* Tiny maths commands */
+enum {
+    CLAW_MATHS_NOP,
+    
+    CLAW_MATHS_INC,
+    CLAW_MATHS_DEC,
+    CLAW_MATHS_ABS,
+    CLAW_MATHS_RAND,
+    CLAW_MATHS_SQRT,
+    CLAW_MATHS_SIN,
+    CLAW_MATHS_COS,
+    CLAW_MATHS_NEG,
+    CLAW_MATHS_NOT,
+    
+    CLAW_MATHS_ADD,
+    CLAW_MATHS_SUB,
+    CLAW_MATHS_DIV,
+    CLAW_MATHS_MOD,
+    CLAW_MATHS_POW,
+    CLAW_MATHS_AND,
+    CLAW_MATHS_OR,
+    CLAW_MATHS_XOR,
+    CLAW_MATHS_BSR,
+    CLAW_MATHS_BSL
+};
+
 #endif

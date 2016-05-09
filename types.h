@@ -17,6 +17,9 @@ typedef claw_ptr claw_size;
 /* error type */
 typedef uint8_t claw_error;
 
+/* instruction type */
+typedef uint8_t claw_instr;
+
 /* Pool var structs ahead */
 typedef struct {
     claw_size size;
