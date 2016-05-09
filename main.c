@@ -22,7 +22,8 @@ int main(int argc, char **argv)
     claw_stack_pop(&sval2);
     claw_stack_push(15);
     claw_maths_inc();
-    claw_maths_pow_c(2);
+    claw_stack_push(2);
+    claw_maths_pow();
     claw_maths_sqrt();
     claw_maths_abs();
     claw_stack_push(26);
@@ -35,7 +36,8 @@ int main(int argc, char **argv)
     claw_maths_div();
     claw_maths_inc();
     claw_maths_dec();
-    claw_maths_rand_c(10);
+    claw_stack_push(10);
+    claw_maths_rand();
     claw_maths_neg();
     claw_stack_push(45);
     claw_maths_sin();
