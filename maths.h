@@ -25,6 +25,6 @@ claw_error  claw_maths_or       (void);
 claw_error  claw_maths_xor      (void);
 claw_error  claw_maths_bsr      (void);
 claw_error  claw_maths_bsl      (void);
-claw_error  claw_maths_tiny     (claw_instr action);
+claw_error  claw_maths          (claw_instr action);
 
 #endif

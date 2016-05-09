@@ -35,10 +35,8 @@ enum {
     CLAW_SINETABLE_32_8     /* 32 bit signed table, 0.25 degrees per step */
 };
 
-/* Tiny maths commands */
+/* Maths processor commands */
 enum {
-    CLAW_MATHS_NOP,
-    
     CLAW_MATHS_INC,
     CLAW_MATHS_DEC,
     CLAW_MATHS_ABS,
