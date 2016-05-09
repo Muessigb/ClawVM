@@ -10,14 +10,6 @@
      * CLAW_OPT_MEMORY:  Optimize for memory, not speed
      * */
     #define CLAW_OPTIMIZE CLAW_OPT_SPEED
-    
-    /* *
-     * Provide constant alternatives for certain maths functions
-     * 
-     * CLAW_TRUE    (Default; recommended for compatability)
-     * CLAW_FALSE
-     * */
-    #define CLAW_CONST_ALTCONSTFCTS CLAW_TRUE
 
     /* *
      * Working stack size
