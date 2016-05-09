@@ -49,6 +49,7 @@ enum {
     
     CLAW_MATHS_ADD,
     CLAW_MATHS_SUB,
+    CLAW_MATHS_MUL,
     CLAW_MATHS_DIV,
     CLAW_MATHS_MOD,
     CLAW_MATHS_POW,

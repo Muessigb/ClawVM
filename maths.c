@@ -1,6 +1,7 @@
 #include "maths.h"
 #include "types.h"
 #include "stack.h"
+#include "consts.h"
 #include "trigonometry.h"
 #include <stdint.h>
 #include <stdlib.h>
