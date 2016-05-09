@@ -37,4 +37,12 @@ typedef struct {
     uint16_t data[];
 } claw_pvar_l;  /* long */
 
+/* Program header */
+typedef struct {
+    uint8_t *name;
+    uint8_t *description;
+    uint16_t configuration;
+    claw_size size;
+} claw_header;
+
 #endif

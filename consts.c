@@ -1,11 +1,13 @@
-#ifndef TRIGONOMETRY_H_
-#define TRIGONOMETRY_H_
+#include "consts.h"
+#include <stdint.h>
+
+const uint8_t CLAW_BITCFG_POOLSZEXP[16] = {5, 6, 8, 9, 10, 12, 13, 14, 16, 18, 19, 20, 22, 24, 27, 29};
 
 #include <stdint.h>
 #include "config.h"
 
 /* Sine tables courtesy of Robin Voetter (Cumred_Snektron) */
-const int8_t claw_sine_table[] = {
+const int8_t CLAW_SINETABLE[] = {
        0,    3,    6,    9,   12,   15,   18,   21,   24,   28,
       31,   34,   37,   40,   43,   46,   48,   51,   54,   57,
       60,   63,   65,   68,   71,   73,   76,   78,   81,   83,
@@ -36,5 +38,3 @@ const int8_t claw_sine_table[] = {
      -18,  -15,  -12,   -9,   -6,  -3
 #endif
      };
-
-#endif

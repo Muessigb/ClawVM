@@ -2,7 +2,6 @@
 #include "types.h"
 #include "stack.h"
 #include "consts.h"
-#include "trigonometry.h"
 #include <stdint.h>
 #include <stdlib.h>
 
@@ -172,13 +171,13 @@ claw_error claw_maths(claw_instr action)
                 val += 90;
             case CLAW_MATHS_COS:
                 #if CLAW_FULL_SINETABLE == CLAW_TRUE
-                    res = claw_sine_table[val];
+                    res = CLAW_SINETABLE[val];
                 #else
                     val &= 0b00111111;
                     val -= 64;
                     val &= 0b01111111;
                     val = 64 - val;
-                    res = (sintable[val] * ((val >> 6) - 1)); /* x >> 6 = x / 128 * 2 */
+                    res = (CLAW_SINETABLE[val] * ((val >> 6) - 1)); /* x >> 6 = x / 128 * 2 */
                 #endif
                 break;
             case CLAW_MATHS_NEG:

@@ -10,7 +10,7 @@
 
 claw_error claw_cpu_execute()
 {
-    
+    /* lets just skip the header at first until we can work with it */
     
     return CLAW_ERR_UNKNOWN;
 }
