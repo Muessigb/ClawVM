@@ -46,7 +46,7 @@
      * CLAW_TRUE    (Default)
      * CLAW_FALSE
      * */
-    #define CLAW_POOL_KEEP_CLEAN CLAW_TRUE
+    #define CLAW_POOL_KEEP_CLEAN CLAW_FALSE
    
     /* *
      * Use full sine table

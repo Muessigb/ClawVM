@@ -188,7 +188,7 @@ claw_error claw_maths(claw_instr action)
         }
         
         return claw_stack_push(res);
-    } else if(action >= CLAW_MATHS_ICR && action <= CLAW_MATHS_NOT) {
+    } else if(action >= CLAW_MATHS_ADD && action <= CLAW_MATHS_BSR) {
         if(claw_stack_ptr < 2)
             return CLAW_ERR_ARGCOUNT;
         

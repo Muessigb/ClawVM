@@ -11,9 +11,8 @@ typedef uint8_t claw_byte;
 typedef int16_t claw_num;
 
 /* the types used for large chunks of data */
-typedef uint16_t claw_ptr;
+typedef uint16_t claw_ptr, claw_size;
 typedef int16_t claw_rptr;
-typedef claw_ptr claw_size;
 
 /* error type */
 typedef uint8_t claw_error;
@@ -24,18 +23,13 @@ typedef uint8_t claw_instr;
 /* Pool var structs ahead */
 typedef struct {
     claw_size size;
-    uint8_t data[];
-} claw_pvar;  /* raw (if you really need to) */
-
-typedef struct {
-    claw_size size;
     claw_byte data[];
-} claw_pvar_s;  /* short */
+} claw_pvar_b;  /* byte */
 
 typedef struct {
     claw_size size;
     uint16_t data[];
-} claw_pvar_l;  /* long */
+} claw_pvar_n;  /* num */
 
 /* Program header */
 typedef struct {
