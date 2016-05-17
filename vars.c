@@ -23,9 +23,45 @@ claw_error claw_pool_vget_a(claw_ptr index, claw_ptr* addr) /* addr = the absolu
     return CLAW_ERR_NONE;
 }
 
+claw_error claw_pool_vget_ba(claw_ptr index, claw_pvar_b** var)
+{
+    claw_error error;
+    claw_ptr addr;
+    
+    if((error = claw_pool_vget_a(index, &addr)) != CLAW_ERR_NONE)
+        return error;
+    
+    *var = (claw_pvar_b*)(addr + claw_pool);
+    
+    return CLAW_ERR_NONE;
+}
+
+claw_error claw_pool_vget_na(claw_ptr index, claw_pvar_n** var)
+{
+    claw_error error;
+    claw_ptr addr;
+    
+    if((error = claw_pool_vget_a(index, &addr)) != CLAW_ERR_NONE)
+        return error;
+    
+    *var = (claw_pvar_n*)(addr + claw_pool);
+    
+    return CLAW_ERR_NONE;
+}
+
 claw_error claw_pool_vget_r(claw_rptr offset, claw_ptr* addr)   /* offset from the last item in the pool */
 {
     return claw_pool_vget_a(claw_pool_len - offset - 1, addr);
+}
+
+claw_error claw_pool_vget_br(claw_rptr offset, claw_pvar_b** var)   /* offset from the last item in the pool */
+{
+    return claw_pool_vget_ba(claw_pool_len - offset - 1, var);
+}
+
+claw_error claw_pool_vget_nr(claw_rptr offset, claw_pvar_n** var)   /* offset from the last item in the pool */
+{
+    return claw_pool_vget_na(claw_pool_len - offset - 1, var);
 }
 
 claw_size claw_pool_usage(void) {

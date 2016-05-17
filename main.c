@@ -6,15 +6,19 @@
 // PC main
 int main(int argc, char **argv)
 {
-    claw_pool_vcreate_n(10);
-    claw_pool_vcreate_b(5);
-    claw_ptr my_arr_addr1;
+    claw_pool_vcreate_n(20);
+    claw_pool_vcreate_b(7);
+    /*claw_ptr my_arr_addr1;
     claw_ptr my_arr_addr2;
     claw_pool_vget_a(0, &my_arr_addr1);
     claw_pool_vget_a(1, &my_arr_addr2);
     claw_pvar_n* my_arr1 = (claw_pvar_n*)(my_arr_addr1 + claw_pool);
-    claw_pvar_b* my_arr2 = (claw_pvar_b*)(my_arr_addr2 + claw_pool);
-    my_arr1->data[5] = 420;
+    claw_pvar_b* my_arr2 = (claw_pvar_b*)(my_arr_addr2 + claw_pool);*/
+    claw_pvar_n *my_arr1;
+    claw_pvar_b *my_arr2;
+    claw_pool_vget_na(0, &my_arr1);
+    claw_pool_vget_ba(1, &my_arr2);
+    my_arr1->data[5] = 42;
     my_arr2->data[3] = 37;
     claw_stack_push(989);
     claw_num sval1;
