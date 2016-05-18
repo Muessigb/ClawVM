@@ -5,26 +5,13 @@
 #include "types.h"
 #include "consts.h"
 
-claw_error  claw_maths_add      (void);
-claw_error  claw_maths_sub      (void);
-claw_error  claw_maths_mul      (void);
-claw_error  claw_maths_div      (void);
-claw_error  claw_maths_mod      (void);
-claw_error  claw_maths_icr      (void);
-claw_error  claw_maths_dcr      (void);
-claw_error  claw_maths_abs      (void);
-claw_error  claw_maths_rand     (void);
-claw_error  claw_maths_pow      (void);
-claw_error  claw_maths_sqrt     (void);
-claw_error  claw_maths_sin      (void);
-claw_error  claw_maths_cos      (void);
-claw_error  claw_maths_neg      (void);
-claw_error  claw_maths_not      (void);
-claw_error  claw_maths_and      (void);
-claw_error  claw_maths_or       (void);
-claw_error  claw_maths_xor      (void);
-claw_error  claw_maths_bsr      (void);
-claw_error  claw_maths_bsl      (void);
-claw_error  claw_maths          (claw_instr action);
+claw_error  claw_maths_pow  (claw_num val1, claw_num val2, claw_num* res);
+claw_error  claw_maths_rev  (claw_num val, claw_num* res);
+claw_error  claw_maths_sqrt (claw_num val, claw_num* res);
+claw_error  claw_maths_log2 (claw_num val, claw_num* res);
+claw_error  claw_maths_bct  (claw_num val, claw_num* res);
+claw_error  claw_maths_itl  (claw_num valx, claw_num valy, claw_num* res);
+claw_error  claw_maths_sin  (claw_num val, claw_num* res);
+claw_error  claw_maths      (claw_instr action);
 
 #endif

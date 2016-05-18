@@ -206,3 +206,10 @@ claw_error claw_logic_lteq_c(claw_num val2)
         
     return claw_stack_push(val1 <= val2);
 }
+
+/*https://graphics.stanford.edu/~seander/bithacks.html#DetermineIfPowerOf2*/
+claw_error claw_logic_ipow2(void)
+{
+    int val = 0;
+    return claw_stack_push(val && !(val & (val - 1)));
+}
