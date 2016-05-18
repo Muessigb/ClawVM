@@ -7,7 +7,8 @@
 
 /* *
  * Fast power of function,
- * adapted from Elias Yarrkov's answer on StackOverflow
+ * Adapted from:
+ * Elias Yarrkov's answer on StackOverflow
  * (http://stackoverflow.com/a/101613)
  * */
 claw_error claw_maths_pow(claw_num val1, claw_num val2, claw_num* res)
@@ -50,7 +51,8 @@ claw_error claw_maths_rev(claw_num val, claw_num* res)
 
 /* *
  * Fast squareroot function,
- * adapted from Craig McQueen's answer on StackOverflow
+ * Adapted from:
+ * Craig McQueen's answer on StackOverflow
  * (http://stackoverflow.com/a/1101217)
  * */
 claw_error claw_maths_sqrt(claw_num val, claw_num* res)
@@ -81,9 +83,21 @@ claw_error claw_maths_sqrt(claw_num val, claw_num* res)
     return CLAW_ERR_NONE;
 }
 
+/* *
+ * Log2 function
+ * 
+ * Adapted from:
+ * http://stackoverflow.com/a/994623
+ * */
 claw_error claw_maths_log2(claw_num val, claw_num* res)
 {
-    return 0;
+    if(val == 0)
+        return CLAW_ERR_OUTOFBOUNDS;
+
+    while (val >>= 1)
+        *res += 1;
+
+    return CLAW_ERR_NONE;
 }
 
 /* *
@@ -111,7 +125,7 @@ claw_error claw_maths_cbs(claw_num val, claw_num* res)
  * Interleave bits of x and y, so that all of the bits of x are in the even positions and y in the odd
  * 
  * Adapted from:
- * 
+ * https://graphics.stanford.edu/~seander/bithacks.html#InterleaveTableObvious
  * */
 claw_error claw_maths_itl(claw_num valx, claw_num valy, claw_num* res)
 {
