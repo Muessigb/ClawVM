@@ -92,7 +92,7 @@ claw_error claw_maths_log2(claw_num val, claw_num* res)
  * Adapted from:
  * https://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetNaive
  * */
-claw_error claw_maths_bct(claw_num val, claw_num* res)
+claw_error claw_maths_cbs(claw_num val, claw_num* res)
 {
     *res = 0;
 
@@ -137,6 +137,25 @@ claw_error claw_maths_sin(claw_num val, claw_num* res)
         *res = (CLAW_SINETABLE[val] * ((val >> 6) - 1)); /* x >> 6 = x / 128 * 2 */
     #endif
     
+    return CLAW_ERR_NONE;
+}
+
+/* *
+ * Count trailing zero bits
+ * 
+ * Adapted from:
+ * https://graphics.stanford.edu/~seander/bithacks.html#ZerosOnRightLinear
+ * */
+claw_error claw_maths_cbz(claw_num val, claw_num* res)
+{
+    *res = 0;
+    if(val) {
+        val = (val ^ (val - 1)) >> 1;  /* Set v's trailing 0s to 1s and zero rest */
+        for (*res = 0; val; *res += 1)
+            val >>= 1;
+    } else
+        *res = sizeof(claw_num) * 8;
+        
     return CLAW_ERR_NONE;
 }
 
@@ -190,6 +209,14 @@ claw_error claw_maths(claw_instr action)
                 break;
             case CLAW_MATHS_REV:
                 if((err = claw_maths_rev(val, &res)) != CLAW_ERR_NONE)
+                    return err;
+                break;
+            case CLAW_MATHS_CBS:
+                if((err = claw_maths_cbs(val, &res)) != CLAW_ERR_NONE)
+                    return err;
+                break;
+            case CLAW_MATHS_CBZ:
+                if((err = claw_maths_cbz(val, &res)) != CLAW_ERR_NONE)
                     return err;
                 break;
         }

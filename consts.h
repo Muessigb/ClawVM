@@ -100,7 +100,9 @@ enum {
     CLAW_MATHS_COS,
     CLAW_MATHS_NEG,
     CLAW_MATHS_NOT,
-    CLAW_MATHS_REV
+    CLAW_MATHS_REV,
+    CLAW_MATHS_CBS,
+    CLAW_MATHS_CBZ
 };
 
 #endif
