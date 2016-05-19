@@ -23,6 +23,19 @@ claw_error claw_pool_vget_a(claw_ptr index, claw_ptr* addr) /* addr = the absolu
     return CLAW_ERR_NONE;
 }
 
+claw_error claw_pool_vget_sa(claw_ptr index, claw_size** size)
+{
+    claw_error error;
+    claw_ptr addr;
+    
+    if((error = claw_pool_vget_a(index, &addr)) != CLAW_ERR_NONE)
+        return error;
+    
+    *size = (claw_size*)(addr + claw_pool);
+    
+    return CLAW_ERR_NONE;
+}
+
 claw_error claw_pool_vget_ba(claw_ptr index, claw_pvar_b** var)
 {
     claw_error error;
@@ -54,6 +67,11 @@ claw_error claw_pool_vget_r(claw_rptr offset, claw_ptr* addr)   /* offset from t
     return claw_pool_vget_a(claw_pool_len - offset - 1, addr);
 }
 
+claw_error claw_pool_vget_sr(claw_rptr offset, claw_size** size)   /* offset from the last item in the pool */
+{
+    return claw_pool_vget_sa(claw_pool_len - offset - 1, size);
+}
+
 claw_error claw_pool_vget_br(claw_rptr offset, claw_pvar_b** var)   /* offset from the last item in the pool */
 {
     return claw_pool_vget_ba(claw_pool_len - offset - 1, var);
@@ -77,7 +95,7 @@ claw_size claw_pool_usage(void) {
 claw_error claw_pool_vcreate_b(claw_size size) {  /* create short pool item with size */
     size *= sizeof(claw_byte);
     
-    if(claw_pool_usage() + size < CLAW_POOL_SIZE) {
+    if(claw_pool_usage() + size + sizeof(claw_size) < CLAW_POOL_SIZE) {
         claw_pool_len++;
         claw_ptr var_ptr;
         if(claw_pool_vget_r(0, &var_ptr) != CLAW_ERR_NONE)
@@ -93,7 +111,7 @@ claw_error claw_pool_vcreate_b(claw_size size) {  /* create short pool item with
 claw_error claw_pool_vcreate_n(claw_size size) {  /* create long pool item with size */
     size *= sizeof(claw_num);
     
-    if(claw_pool_usage() + size < CLAW_POOL_SIZE) {
+    if(claw_pool_usage() + size + sizeof(claw_size) < CLAW_POOL_SIZE) {
         claw_pool_len++;
         claw_ptr var_ptr;
         if(claw_pool_vget_r(0, &var_ptr) != CLAW_ERR_NONE)
@@ -110,13 +128,12 @@ claw_error claw_pool_vdestroy(void) {      /* destroys the last item created */
     if(claw_pool_len) {
         
 #if CLAW_POOL_KEEP_CLEAN == CLAW_TRUE /* do we clean the array before destroying it? */
-/*        claw_size* var_size;
-        claw_pool_vget_r(0, var_size);
-        var_size = (claw_size*)(var_size + claw_pool);
-        claw_size size = (*var_size) + sizeof(claw_size) - 1;
+        claw_size* var_size;
+        claw_pool_vget_sr(0, &var_size);
+        claw_size size = *var_size + sizeof(claw_size) - 1;
         
         for(; size > 0; size--)
-            *((claw_byte)(var_size + size)) = 0;*/
+            *((claw_byte*)(var_size + size)) = 0;
 #endif
         claw_pool_len--;    /* decreasing the pointer is enough to get rid of the var */
         return CLAW_ERR_NONE;
