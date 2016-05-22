@@ -2,7 +2,6 @@
 #define CONSTS_H_
 
 #include <stdint.h>
-#include "types.h"
 
 /* Boolean constants */
 enum {
@@ -10,7 +9,16 @@ enum {
     CLAW_TRUE
 };
 
-/* Optimisation constants */
+/* Types */
+enum {
+    CLAW_TYPE_NUM,
+    CLAW_TYPE_ARR_B,
+    CLAW_TYPE_ARR_N,
+    CLAW_TYPE_FUNC,
+    CLAW_TYPE_ACT
+};
+
+/* Optimisation constants (probably deprecated and might not be used) */
 enum {
     CLAW_OPT_SPEED,
     CLAW_OPT_MEMORY

@@ -22,6 +22,17 @@ claw_error claw_stack_push(claw_num value)
     return CLAW_ERR_NONE;
 }
 
+claw_error claw_stack_push_c(claw_callback* callback)
+{
+    if(claw_stack_ptr + 2 > CLAW_STACK_SIZE)
+        return CLAW_ERR_STACKOVERFLOW;
+        
+    claw_stack[claw_stack_ptr++] = callback->function.value;
+    claw_stack[claw_stack_ptr++] = callback->address;
+    
+    return CLAW_ERR_NONE;
+}
+
 claw_error claw_stack_pop(claw_num* value)
 {
     if(!claw_stack_ptr)
@@ -29,6 +40,40 @@ claw_error claw_stack_pop(claw_num* value)
     
     *value = claw_stack[--claw_stack_ptr];
     claw_stack[claw_stack_ptr] = 0;
+    
+    return CLAW_ERR_NONE;
+}
+
+claw_error claw_stack_pop_c(claw_callback* callback)
+{
+    if(claw_stack_ptr < 2)
+        return CLAW_ERR_STACKUNDERFLOW;
+        
+    callback->address = claw_stack[--claw_stack_ptr];
+    claw_stack[claw_stack_ptr] = 0;
+    callback->function.value = claw_stack[--claw_stack_ptr];
+    claw_stack[claw_stack_ptr] = 0;
+    
+    return CLAW_ERR_NONE;
+}
+
+claw_error claw_stack_drp(void)
+{
+    if(!claw_stack_ptr)
+        return CLAW_ERR_STACKUNDERFLOW;
+    
+    claw_stack[--claw_stack_ptr] = 0;
+    
+    return CLAW_ERR_NONE;
+}
+
+claw_error claw_stack_drp_c(void)
+{
+    if(claw_stack_ptr < 2)
+        return CLAW_ERR_STACKUNDERFLOW;
+        
+    claw_stack[--claw_stack_ptr] = 0;
+    claw_stack[--claw_stack_ptr] = 0;
     
     return CLAW_ERR_NONE;
 }

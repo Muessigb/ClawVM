@@ -3,11 +3,10 @@
 
 #include <stdint.h>
 #include "config.h"
-#include "types.h"
 
 /* the claw byte (for storing data), normally uint8_t */
 typedef uint8_t claw_byte;
-/* the claw numeric type, normally the largest signed int on the target system */
+/* the claw numeric type, normally the largest signed int on the target system (at least int16_t) */
 typedef int16_t claw_num;
 
 /* the types used for large chunks of data */
@@ -28,15 +27,43 @@ typedef struct {
 
 typedef struct {
     claw_size size;
-    uint16_t data[];
+    claw_num data[];
 } claw_pvar_n;  /* num */
 
 /* Program header */
 typedef struct {
     uint8_t *name;
     uint8_t *description;
+    uint16_t version;
     uint16_t configuration;
     claw_size size;
 } claw_header;
+
+typedef struct {
+    claw_byte id;
+    claw_byte name[];
+} claw_header_funct;
+
+/* Claw function; used when you need to provide a specific function */
+typedef struct {
+    union {
+        claw_num value;
+        struct {
+            claw_byte source; /* TODO: Replace with file type I guess */
+            claw_byte id; /* ID of the function within the above file */
+        };
+    };
+} claw_function;
+
+/* Claw absolute callback */
+typedef struct {
+    claw_function function;
+    claw_ptr address;
+} claw_callback;
+
+typedef struct {
+    claw_num num_funcs;
+    claw_function functions[];
+} claw_context;
 
 #endif

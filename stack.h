@@ -9,7 +9,11 @@ extern claw_ptr claw_stack_ptr;
 
 void        claw_stack_clear    (void);
 claw_error  claw_stack_push     (claw_num value);
+claw_error  claw_stack_push_c   (claw_callback* callback);
 claw_error  claw_stack_pop      (claw_num* value);
+claw_error  claw_stack_pop_c    (claw_callback* callback);
+claw_error  claw_stack_drp      (void);
+claw_error  claw_stack_drp_c    (void);
 claw_error  claw_stack_peek     (claw_ptr offset, claw_num* value);
 claw_error  claw_stack_dup      (void);
 

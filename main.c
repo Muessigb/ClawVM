@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include "config.h"
+#include "types.h"
 #include "vars.h"
 #include "stack.h"
 #include "maths.h"
@@ -8,12 +10,14 @@ int main(int argc, char **argv)
 {
     claw_pool_vcreate_n(20);
     claw_pool_vcreate_b(7);
-    /*claw_ptr my_arr_addr1;
-    claw_ptr my_arr_addr2;
-    claw_pool_vget_a(0, &my_arr_addr1);
-    claw_pool_vget_a(1, &my_arr_addr2);
-    claw_pvar_n* my_arr1 = (claw_pvar_n*)(my_arr_addr1 + claw_pool);
-    claw_pvar_b* my_arr2 = (claw_pvar_b*)(my_arr_addr2 + claw_pool);*/
+    
+    claw_callback cbw, cbr;
+    cbw.address = 21;
+    cbw.function.id = 42;
+    cbw.function.source = 3;
+    
+    claw_stack_push_c(&cbw);
+    
     claw_pvar_n *my_arr1;
     claw_pvar_b *my_arr2;
     claw_pool_vget_na(0, &my_arr1);
@@ -53,9 +57,12 @@ int main(int argc, char **argv)
     claw_stack_push(21);
     claw_maths(CLAW_MATHS_ADD);
     claw_stack_pop(&sval3);
+    claw_stack_drp();
     
-    printf("Size 1: %d\nSize 2: %d\nValue 1.5: %d\nValue 2.3: %d\nSValue 1: %d\nSValue 2: %d\nSValue 3: %d\n",
-        my_arr1->size, my_arr2->size, my_arr1->data[5], my_arr2->data[3], sval1, sval2, sval3);
+    claw_stack_pop_c(&cbr);
+    
+    printf("Size 1: %d\nSize 2: %d\nValue 1.5: %d\nValue 2.3: %d\nSValue 1: %d\nSValue 2: %d\nSValue 3: %d\nCallback Address: %d\nCallback Function~, Source ID: %d,%d\n",
+        my_arr1->size, my_arr2->size, my_arr1->data[5], my_arr2->data[3], sval1, sval2, sval3, cbr.address, cbr.function.id, cbr.function.source);
         
     return 0;
 }
