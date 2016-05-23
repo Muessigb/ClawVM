@@ -6,12 +6,31 @@
 
 /* the claw byte (for storing data), normally uint8_t */
 typedef uint8_t claw_byte;
+
 /* the claw numeric type, normally the largest signed int on the target system (at least int16_t) */
+#if CLAW_ARCHITECTURE == CLAW_ARCH_16_BIT
 typedef int16_t claw_num;
+#elif CLAW_ARCHITECTURE == CLAW_ARCH_32_BIT
+typedef int32_t claw_num;
+#elif CLAW_ARCHITECTURE == CLAW_ARCH_64_BIT
+typedef int64_t claw_num;
+#else
+    #error "Unsupported architecture!"
+#endif
 
 /* the types used for large chunks of data */
+#if CLAW_ARCHITECTURE == CLAW_ARCH_16_BIT
 typedef uint16_t claw_ptr, claw_size;
 typedef int16_t claw_rptr;
+#elif CLAW_ARCHITECTURE == CLAW_ARCH_32_BIT
+typedef uint32_t claw_ptr, claw_size;
+typedef int32_t claw_rptr;
+#elif CLAW_ARCHITECTURE == CLAW_ARCH_64_BIT
+typedef uint64_t claw_ptr, claw_size;
+typedef int64_t claw_rptr;
+#else
+    #error "Unsupported architecture!"
+#endif
 
 /* error type */
 typedef uint8_t claw_error;

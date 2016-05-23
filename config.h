@@ -12,6 +12,16 @@
     #define CLAW_TARGET PC
     
     /* *
+     * Architecture
+     * 
+     * Maximum integer size
+     * CLAW_ARCH_16_BIT (Default)
+     * CLAW_ARCH_32_BIT
+     * CLAW_ARCH_64_BIT
+     * */
+    #define CLAW_ARCHITECTURE CLAW_ARCH_32_BIT2
+    
+    /* *
      * Filesystem support
      * 
      * Does the target system have a file system.
