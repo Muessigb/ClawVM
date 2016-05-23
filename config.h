@@ -19,7 +19,7 @@
      * CLAW_ARCH_32_BIT
      * CLAW_ARCH_64_BIT
      * */
-    #define CLAW_ARCHITECTURE CLAW_ARCH_32_BIT2
+    #define CLAW_ARCHITECTURE CLAW_ARCH_16_BIT
     
     /* *
      * Filesystem support

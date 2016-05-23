@@ -10,18 +10,18 @@
 #define CLAW_TRUE   1
 
 /* Platforms */
-#define CLAW_ARCH_16_BIT  0
-#define CLAW_ARCH_32_BIT  1
-#define CLAW_ARCH_64_BIT  2
+#define CLAW_ARCH_16_BIT  1
+#define CLAW_ARCH_32_BIT  2
+#define CLAW_ARCH_64_BIT  3
 
 /* Sine table constants */
-#define CLAW_SINETABLE_8_1   0    /* 8 bit signed table,  2    degrees per step */
-#define CLAW_SINETABLE_8_2   1    /* 8 bit signed table,  1    degree per step */
-#define CLAW_SINETABLE_16_2  2    /* 16 bit signed table, 1    degree per step */
-#define CLAW_SINETABLE_16_4  3    /* 16 bit signed table, 0.5  degrees per step */
-#define CLAW_SINETABLE_32_2  4    /* 32 bit signed table, 1    degree per step */
-#define CLAW_SINETABLE_32_4  5    /* 32 bit signed table, 0.5  degrees per step */
-#define CLAW_SINETABLE_32_8  6    /* 32 bit signed table, 0.25 degrees per step */
+#define CLAW_SINETABLE_8_1   1    /* 8 bit signed table,  2    degrees per step */
+#define CLAW_SINETABLE_8_2   2    /* 8 bit signed table,  1    degree per step */
+#define CLAW_SINETABLE_16_2  3    /* 16 bit signed table, 1    degree per step */
+#define CLAW_SINETABLE_16_4  4    /* 16 bit signed table, 0.5  degrees per step */
+#define CLAW_SINETABLE_32_2  5    /* 32 bit signed table, 1    degree per step */
+#define CLAW_SINETABLE_32_4  6    /* 32 bit signed table, 0.5  degrees per step */
+#define CLAW_SINETABLE_32_8  7    /* 32 bit signed table, 0.25 degrees per step */
 
 /* Compile time enums */
 
