@@ -109,8 +109,6 @@
     <File Name="hardware_PC.c"/>
     <File Name="hardware_PC.h"/>
     <File Name="consts.c"/>
-    <File Name="callstack.c"/>
-    <File Name="callstack.h"/>
   </VirtualDirectory>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>

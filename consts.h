@@ -58,28 +58,6 @@ enum {
     CLAW_BITCFG_POOLSIZE = 0x3C0, /* Minimum pool size for program to work; Value is 2^(CONSTTBL[POOLSIZE]) */
 };
 
-/* The sine table itself */
-extern const int8_t CLAW_SINETABLE[];
-
-/* Constant array for determining the minimum RAM size to execute program */
-extern const uint8_t CLAW_BITCFG_POOLSZEXP[16];
-/*      32  (2^5)  (0)
-        64  (2^6)  (1)
-       256  (2^8)  (2)
-       512  (2^9)  (3)
-      1024 (2^10)  (4)
-      4096 (2^12)  (5)
-      8192 (2^13)  (6)
-     16384 (2^14)  (7)
-     65536 (2^16)  (8)
-    262144 (2^18)  (9)
-    524288 (2^19) (10)
-   1048576 (2^20) (11)
-   4194304 (2^22) (12)
-  16777216 (2^24) (13)
- 134217728 (2^27) (14)
- 536870912 (2^29) (15) */
-
 /* Maths processor commands */
 enum {
     CLAW_MATHS_ADD,
@@ -111,5 +89,30 @@ enum {
     CLAW_MATHS_CBS,
     CLAW_MATHS_CBZ
 };
+
+
+/* Constant tables */
+
+/* The sine table itself */
+extern const int8_t CLAW_SINETABLE[];
+
+/* Constant array for determining the minimum RAM size to execute program */
+extern const uint8_t CLAW_BITCFG_POOLSZEXP[16];
+/*      32  (2^5)  (0)
+        64  (2^6)  (1)
+       256  (2^8)  (2)
+       512  (2^9)  (3)
+      1024 (2^10)  (4)
+      4096 (2^12)  (5)
+      8192 (2^13)  (6)
+     16384 (2^14)  (7)
+     65536 (2^16)  (8)
+    262144 (2^18)  (9)
+    524288 (2^19) (10)
+   1048576 (2^20) (11)
+   4194304 (2^22) (12)
+  16777216 (2^24) (13)
+ 134217728 (2^27) (14)
+ 536870912 (2^29) (15) */
 
 #endif
