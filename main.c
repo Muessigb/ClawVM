@@ -8,8 +8,8 @@
 // PC main
 int main(int argc, char **argv)
 {
-    claw_pool_vcreate_n(20);
-    claw_pool_vcreate_b(7);
+    claw_pool_alloc_n(20);
+    claw_pool_alloc_n(7);
     
     claw_callback cbw, cbr;
     cbw.address = 21;
@@ -18,12 +18,13 @@ int main(int argc, char **argv)
     
     claw_stack_push_c(&cbw);
     
-    claw_pvar_n *my_arr1;
-    claw_pvar_b *my_arr2;
-    claw_pool_vget_na(0, &my_arr1);
-    claw_pool_vget_ba(1, &my_arr2);
-    my_arr1->data[5] = 42;
-    my_arr2->data[3] = 37;
+    claw_num *my_arr1;
+    claw_byte *my_arr2;
+    claw_size my_size1, my_size2;
+    claw_pool_locate_an(0, &my_arr1, &my_size1);
+    claw_pool_locate_ab(1, &my_arr2, &my_size2);
+    my_arr1[5] = 42;
+    my_arr2[3] = 37;
     claw_stack_push(989);
     claw_num sval1;
     claw_num sval2;
@@ -62,7 +63,7 @@ int main(int argc, char **argv)
     claw_stack_pop_c(&cbr);
     
     printf("Size 1: %d\nSize 2: %d\nValue 1.5: %d\nValue 2.3: %d\nSValue 1: %d\nSValue 2: %d\nSValue 3: %d\nCallback Address: %d\nCallback Function~, Source ID: %d,%d\n",
-        my_arr1->size, my_arr2->size, my_arr1->data[5], my_arr2->data[3], sval1, sval2, sval3, cbr.address, cbr.function.id, cbr.function.source);
+        my_size1, my_size2, my_arr1[5], my_arr2[3], sval1, sval2, sval3, cbr.address, cbr.function.id, cbr.function.source);
         
     return 0;
 }
