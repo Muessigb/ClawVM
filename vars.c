@@ -20,7 +20,7 @@ claw_error claw_pool_locate(claw_ptr index, claw_ptr* pptr, claw_size* size)
         return CLAW_ERR_OUTOFBOUNDS;
     
     if(index) /* if index == 0 then the base address is 0 */
-        *pptr = *((claw_ptr*)(claw_pool + CLAW_POOL_SIZE - (index + 2) * sizeof(claw_ptr)));
+        *pptr = *((claw_ptr*)(claw_pool + CLAW_POOL_SIZE - index * sizeof(claw_ptr)));
     else
         *pptr = 0;
         
@@ -101,7 +101,7 @@ claw_error claw_pool_alloc(claw_size blocks)
 #endif
         claw_ptr base = 0;
         if(claw_pool_len)
-            base = *((claw_ptr*)(claw_pool + CLAW_POOL_SIZE - (claw_pool_len - 1) * sizeof(claw_ptr)));
+            base = *((claw_ptr*)(claw_pool + CLAW_POOL_SIZE - claw_pool_len * sizeof(claw_ptr)));
         *((claw_ptr*)(claw_pool + CLAW_POOL_SIZE - (claw_pool_len + 1) * sizeof(claw_ptr))) = base + blocks;
         claw_pool_len++;
         return CLAW_ERR_NONE;
@@ -140,16 +140,16 @@ claw_error claw_pool_dealloc(void) /* destroys the last item created */
 {
     if(claw_pool_len) {
 #if CLAW_POOL_KEEP_CLEAN == CLAW_TRUE /* do we clean the array before destroying it? */
-        claw_ptr ptr1 = 0, ptr2 = 0;
+        claw_ptr ptr1 = 0, *ptr2 = 0;
         
         if(claw_pool_len > 1)
-            ptr1 = *((claw_ptr*)(claw_pool + CLAW_POOL_SIZE - (claw_pool_len + 2) * sizeof(claw_ptr)));
-        ptr2 = *((claw_ptr*)(claw_pool + CLAW_POOL_SIZE - (claw_pool_len + 1) * sizeof(claw_ptr)));
+            ptr1 = *((claw_ptr*)(claw_pool + CLAW_POOL_SIZE - (claw_pool_len - 1) * sizeof(claw_ptr)));
+        ptr2 = (claw_ptr*)(claw_pool + CLAW_POOL_SIZE - claw_pool_len * sizeof(claw_ptr));
         
-        for(; ptr2 > ptr1; ptr2--)
-            *((claw_byte)(claw_pool + ptr2)) = 0;
+        for(; *ptr2 > ptr1; (*ptr2)--)
+            *((claw_byte*)(claw_pool + *ptr2)) = 0;
             
-        *((claw_ptr*)(claw_pool + CLAW_POOL_SIZE - claw_pool_len + 1)) = 0; /* clean the size field up */
+        *ptr2 = 0; /* clean the size field up */
 #endif
         claw_pool_len--;    /* decreasing the pointer is enough to get rid of the var */
         return CLAW_ERR_NONE;
