@@ -14,7 +14,12 @@
     /* *
      * Architecture
      * 
-     * Maximum integer size
+     * The maximum integer size that Claw might use.
+     * Normally this should be set to the same architecture of the target
+     * system, however each more bits you use, each more memory Claw will
+     * consume. Best is setting it to the minimum you need that is supported
+     * by your target system.
+     * 
      * CLAW_ARCH_16_BIT (Default)
      * CLAW_ARCH_32_BIT
      * CLAW_ARCH_64_BIT
@@ -36,7 +41,7 @@
     /* *
      * Working stack size
      * 
-     * Maximum entries
+     * Maximum stack entries
      * Default:     32 entries
      * */
     #define CLAW_STACK_SIZE 32
@@ -50,14 +55,36 @@
     #define CLAW_POOL_SIZE 1024
   
     /* *
+     * Keep array pool clean
+     * 
      * Clear arrays on deletion to prevent the next created one from being dirty
-     * and also clears the pool on startup
+     * and also clears the pool on startup.
      * 
      * CLAW_TRUE    (Default)
      * CLAW_FALSE
      * */
     #define CLAW_POOL_KEEP_CLEAN CLAW_FALSE
-   
+    
+    /* *
+     * Use blocks for arrays
+     * 
+     * Uses blocks of for array alignment. This gives you multiple times more
+     * usable pool space on platforms that are capable of larger addresses
+     * than what Claw is configured to use.
+     * Disable this, if Claw is configured to use the same architecture as your
+     * target system.
+     * 
+     * CLAW_POOL_BLK_NONE   (Default)
+     * CLAW_POOL_BLK_2
+     * CLAW_POOL_BLK_4
+     * CLAW_POOL_BLK_8
+     * CLAW_POOL_BLK_16
+     * CLAW_POOL_BLK_32
+     * CLAW_POOL_BLK_64
+     * CLAW_POOL_BLK_128
+     * */
+    #define CLAW_POOL_BLOCKS CLAW_POOL_BLK_NONE
+    
     /* *
      * Use full sine table
      * 

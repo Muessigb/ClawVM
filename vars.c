@@ -25,7 +25,11 @@ claw_error claw_pool_locate(claw_ptr index, claw_ptr* pptr, claw_size* size)
         *pptr = 0;
         
     if(size) /* if pointer to size variable is provided, calculate byte size */
-        *size = (*((claw_ptr*)(claw_pool + CLAW_POOL_SIZE - (index + 1) * sizeof(claw_ptr))) - *pptr) << 2;
+#if CLAW_POOL_BLOCKS == CLAW_POOL_BLK_NONE
+        *size = (*((claw_ptr*)(claw_pool + CLAW_POOL_SIZE - (index + 1) * sizeof(claw_ptr))) - *pptr);
+#else
+        *size = (*((claw_ptr*)(claw_pool + CLAW_POOL_SIZE - (index + 1) * sizeof(claw_ptr))) - *pptr) << CLAW_POOL_BLOCKS;
+#endif
         
     return CLAW_ERR_NONE;
 }
@@ -87,7 +91,14 @@ claw_size claw_pool_usage(void) /* number of allocated blocks */
 
 claw_error claw_pool_alloc(claw_size blocks)
 {
-    if(((claw_pool_usage() + blocks) << 2) + sizeof(claw_ptr) < CLAW_POOL_SIZE) {
+    if(!blocks)
+        return CLAW_ERR_OUTOFBOUNDS;
+    
+#if CLAW_POOL_BLOCKS == CLAW_POOL_BLK_NONE
+    if(claw_pool_usage() + blocks + sizeof(claw_ptr) < CLAW_POOL_SIZE) {
+#else
+    if(((claw_pool_usage() + blocks) << CLAW_POOL_BLOCKS) + sizeof(claw_ptr) < CLAW_POOL_SIZE) {
+#endif
         claw_ptr base = 0;
         if(claw_pool_len)
             base = *((claw_ptr*)(claw_pool + CLAW_POOL_SIZE - (claw_pool_len - 1) * sizeof(claw_ptr)));
@@ -102,25 +113,26 @@ claw_error claw_pool_alloc(claw_size blocks)
 claw_error claw_pool_alloc_b(claw_size size) /* create byte pool item with size */
 {
     size *= sizeof(claw_byte);
-    if(size & 0x3) // 0x3 = 0b11 ; we need to check if the size is uneven
-        size = size + 0x4; // 0x4 = 0b100 ; we need to make the size the next multiple of 4
-    size = size >> 2; // drop the last two bits
     
-    if(!size)
-        return CLAW_ERR_OUTOFBOUNDS;
+#if CLAW_POOL_BLOCKS > CLAW_POOL_BLK_NONE   
+    if(size & ((1 << CLAW_POOL_BLOCKS) - 1)) /* e.g 0x3 = 0b11 ; we need to check if the size is uneven */
+        size = size + (1 << CLAW_POOL_BLOCKS); // e.g. 0x4 = 0b100 ; we need to make the size the next multiple
+    size = size >> CLAW_POOL_BLOCKS; // strip the two least significant bits
+#endif
+
     return claw_pool_alloc(size);
 }
 
 claw_error claw_pool_alloc_n(claw_size size) /* create num pool item with size */
 {
     size *= sizeof(claw_num);
+ 
+#if CLAW_POOL_BLOCKS > CLAW_POOL_BLK_NONE   
+    if(size & ((1 << CLAW_POOL_BLOCKS) - 1)) /* e.g 0x3 = 0b11 ; we need to check if the size is uneven */
+        size = size + (1 << CLAW_POOL_BLOCKS); // e.g. 0x4 = 0b100 ; we need to make the size the next multiple
+    size = size >> CLAW_POOL_BLOCKS; // strip the two least significant bits
+#endif
     
-    if(size & 0x3) // 0x3 = 0b11 ; we need to check if the size is uneven
-        size = size + 0x4; // 0x4 = 0b100 ; we need to make the size the next multiple of 4
-    size = size >> 2; // strip the two least significant bits
-    
-    if(!size)
-        return CLAW_ERR_OUTOFBOUNDS;
     return claw_pool_alloc(size);
 }
 
@@ -131,8 +143,8 @@ claw_error claw_pool_dealloc(void) /* destroys the last item created */
         claw_ptr ptr1 = 0, ptr2 = 0;
         
         if(claw_pool_len > 1)
-            ptr1 = *((claw_ptr*)(claw_pool + CLAW_POOL_SIZE - claw_pool_len + 2));
-        ptr2 = *((claw_ptr*)(claw_pool + CLAW_POOL_SIZE - claw_pool_len + 1));
+            ptr1 = *((claw_ptr*)(claw_pool + CLAW_POOL_SIZE - (claw_pool_len + 2) * sizeof(claw_ptr)));
+        ptr2 = *((claw_ptr*)(claw_pool + CLAW_POOL_SIZE - (claw_pool_len + 1) * sizeof(claw_ptr)));
         
         for(; ptr2 > ptr1; ptr2--)
             *((claw_byte)(claw_pool + ptr2)) = 0;

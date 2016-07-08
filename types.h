@@ -4,6 +4,11 @@
 #include <stdint.h>
 #include "config.h"
 
+/* *
+ * WARNING: If you don't know what you are doing, DO NOT edit the values here!
+ *          You have to configure these in config.h
+ * */
+
 /* the claw byte (for storing data), normally uint8_t */
 typedef uint8_t claw_byte;
 
@@ -37,17 +42,6 @@ typedef uint8_t claw_error;
 
 /* instruction type */
 typedef uint8_t claw_instr;
-
-/* Pool var structs ahead */
-typedef struct {
-    claw_size size;
-    claw_byte data[];
-} claw_pvar_b;  /* byte */
-
-typedef struct {
-    claw_size size;
-    claw_num data[];
-} claw_pvar_n;  /* num */
 
 /* Program header */
 typedef struct {

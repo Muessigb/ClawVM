@@ -23,6 +23,15 @@
 #define CLAW_SINETABLE_32_4  6    /* 32 bit signed table, 0.5  degrees per step */
 #define CLAW_SINETABLE_32_8  7    /* 32 bit signed table, 0.25 degrees per step */
 
+#define CLAW_POOL_BLK_NONE  0
+#define CLAW_POOL_BLK_2     1
+#define CLAW_POOL_BLK_4     2
+#define CLAW_POOL_BLK_8     3
+#define CLAW_POOL_BLK_16    4
+#define CLAW_POOL_BLK_32    5
+#define CLAW_POOL_BLK_64    6
+#define CLAW_POOL_BLK_128   7
+
 /* Compile time enums */
 
 /* Misc */
