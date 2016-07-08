@@ -9,7 +9,7 @@
 int main(int argc, char **argv)
 {
     claw_pool_alloc_n(20);
-    claw_pool_alloc_n(7);
+    claw_pool_alloc_b(7);
     
     claw_callback cbw, cbr;
     cbw.address = 21;

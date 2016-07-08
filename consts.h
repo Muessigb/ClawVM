@@ -25,6 +25,9 @@
 
 /* Compile time enums */
 
+/* Misc */
+#define CLAW_NULLPTR ((void*)0)
+
 /* Types */
 enum {
     CLAW_TYPE_NUM,
