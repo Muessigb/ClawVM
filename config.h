@@ -39,7 +39,7 @@
     #define CLAW_FILESYSTEM_SUPPORT CLAW_FALSE
 
     /* *
-     * Working stack size
+     * Numeric stack size
      * 
      * Maximum stack entries
      * Default:     32 entries
@@ -53,6 +53,14 @@
      * Default:     1024 bytes
      * */
     #define CLAW_POOL_SIZE 1024
+    
+    /* *
+     * Call stack size
+     * 
+     * Size of the callstack
+     * Default:     24 entries
+     * */
+    #define CLAW_CALLSTACK_SIZE 24
   
     /* *
      * Keep array pool clean
