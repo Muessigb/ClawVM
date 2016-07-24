@@ -1,4 +1,4 @@
-![https://github.com/muessigb/ClawVM/blob/master/claw-header.png?raw=true]
+![Header image](https://github.com/muessigb/ClawVM/blob/master/claw-header.png?raw=true])
 
 The Claw VM is the reference implementation for the a virtual machine following the specifications for
 the Claw Development System.
