@@ -1,9 +1,4 @@
-     _____ _              ____             _____         _           
-    |     | |___ _ _ _   |    \ ___ _ _   |   __|_ _ ___| |_ ___ ___ 
-    |   --| | .'| | | |  |  |  | -_| | |  |__   | | |_ -|  _| -_|   |
-    |_____|_|__,|_____|  |____/|___|\_/   |_____|_  |___|_| |___|_|_|
-                                            |___| 
-    the portable embedded device VM
+![https://github.com/muessigb/ClawVM/blob/master/claw-header.png?raw=true]
 
 The Claw VM is the reference implementation for the a virtual machine following the specifications for
 the Claw Development System.
