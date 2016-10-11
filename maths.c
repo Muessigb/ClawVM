@@ -1,6 +1,5 @@
 #include "maths.h"
 #include "types.h"
-#include "stack.h"
 #include "consts.h"
 #include <stdint.h>
 #include <stdlib.h>
