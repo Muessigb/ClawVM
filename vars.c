@@ -10,7 +10,7 @@ claw_size claw_pool_len = 0;          /* current length of the stack */
 
 void claw_pool_clear(void) /* Clear the var pool */
 {
-    for(claw_pool_len = CLAW_POOL_SIZE; claw_pool_len > 0; claw_pool_len--)
+    for(claw_pool_len = CLAW_POOL_SIZE - 1; claw_pool_len >= 0; claw_pool_len--)
         claw_pool[claw_pool_len] = 0;
 }
 

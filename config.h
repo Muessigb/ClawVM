@@ -16,7 +16,7 @@
      * 
      * The maximum integer size that Claw might use.
      * Normally this should be set to the same architecture of the target
-     * system, however each more bits you use, each more memory Claw will
+     * system, however thr more bits you use, the more memory Claw will
      * consume. Best is setting it to the minimum you need that is supported
      * by your target system.
      * 
@@ -29,7 +29,7 @@
     /* *
      * Filesystem support
      * 
-     * Does the target system have a file system.
+     * Does the target system have a file system?
      * If so, this will enable dynamic linking and
      * possibly support for file operations.
      * 
@@ -76,7 +76,7 @@
     /* *
      * Use blocks for arrays
      * 
-     * Uses blocks of for array alignment. This gives you multiple times more
+     * Uses blocks for array alignment. This gives you multiple times more
      * usable pool space on platforms that are capable of larger addresses
      * than what Claw is configured to use.
      * Disable this, if Claw is configured to use the same architecture as your
@@ -92,29 +92,5 @@
      * CLAW_POOL_BLK_128
      * */
     #define CLAW_POOL_BLOCKS CLAW_POOL_BLK_NONE
-    
-    /* *
-     * Use full sine table
-     * 
-     * Uses a full table of sines instead of a half one with additional arithmetic.
-     * The full table is faster but takes up double the space in static memory.
-     * 
-     * CLAW_TRUE    (Default)
-     * CLAW_FALSE
-     * */
-    #define CLAW_FULL_SINETABLE CLAW_TRUE
-    
-    /* *
-     * Sine table accuracy
-     * 
-     * CLAW_SINETABLE_8_1:  8 bit signed table,  2 degrees per step
-     * CLAW_SINETABLE_8_2:  8 bit signed table,  1 degree per step  (Default)
-     * CLAW_SINETABLE_16_2: 16 bit signed table, 1 degree per step
-     * CLAW_SINETABLE_16_4: 16 bit signed table, 0.5 degrees per step
-     * CLAW_SINETABLE_32_2: 32 bit signed table, 1 degree per step
-     * CLAW_SINETABLE_32_4: 32 bit signed table, 0.5 degrees per step
-     * CLAW_SINETABLE_32_8: 32 bit signed table, 0.25 degrees per step
-     * */
-    #define CLAW_MATHS_SINETABLE CLAW_SINETABLE_8_2
 
 #endif

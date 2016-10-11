@@ -3,8 +3,49 @@
 #include "types.h"
 #include <stdint.h>
 #include <stdio.h>
+#include <string.h>
 
 #if CLAW_TARGET == PC
+
+/* Implement stdio first */
+claw_error claw_print_string(char* str)
+{
+    if(printf("%s", str) > 0)
+        return CLAW_ERR_NONE;
+    return CLAW_ERR_UNKNOWN;
+}
+
+claw_error claw_print_number(claw_num num)
+{
+    if(printf("%d", num) > 0)
+        return CLAW_ERR_NONE;
+    return CLAW_ERR_UNKNOWN;
+}
+
+claw_error claw_print_newline(void)
+{
+    if(printf("\n") > 0)
+        return CLAW_ERR_NONE;
+    return CLAW_ERR_UNKNOWN;
+}
+
+claw_error claw_read_number(claw_num* num)
+{
+    #if CLAW_ARCHITECTURE == CLAW_ARCH_16_BIT
+        if(scanf("%hi", num) > 0)
+            return CLAW_ERR_NONE;
+    #elif CLAW_ARCHITECTURE == CLAW_ARCH_32_BIT
+        if(scanf("%li", num) > 0)
+            return CLAW_ERR_NONE;
+    #elif CLAW_ARCHITECTURE == CLAW_ARCH_64_BIT
+        if(scanf("%lli", num) > 0)
+            return CLAW_ERR_NONE;    
+    #else
+        #error "Unknown architecture!"
+    #endif
+    
+    return CLAW_ERR_ARGINVALID;
+}
 
 FILE* file;
 

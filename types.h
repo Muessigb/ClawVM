@@ -52,20 +52,12 @@ typedef struct {
     claw_size size;
 } claw_header;
 
-typedef struct {
-    claw_byte id;
-    claw_byte name[];
-} claw_header_funct;
-
 /* Claw function; used when you need to provide a specific function */
 typedef struct {
-    union {
-        claw_num value;
-        struct {
-            claw_byte source; /* TODO: Replace with file type I guess */
-            claw_byte id; /* ID of the function within the above file */
-        };
-    };
+    claw_byte index; /* the index of the function */
+#if CLAW_FILESYSTEM_SUPPORT == CLAW_TRUE
+    claw_byte slot; /* the slot of the executable */
+#endif
 } claw_function;
 
 /* Claw absolute callback */

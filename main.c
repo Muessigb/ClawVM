@@ -8,18 +8,18 @@
 // PC main
 int main(int argc, char **argv)
 {
-    int i = 0;
-    for(; i < 100; i++) {   
-        claw_pool_alloc_n(20);
-        claw_pool_alloc_b(7);
+    //int i = 0;
+    //for(; i < 100; i++) {   
+      //  claw_pool_alloc_n(20);
+      //  claw_pool_alloc_b(7);
         
-        claw_callback cbw, cbr;
+        /*claw_callback cbw, cbr;
         cbw.address = 21;
         cbw.function.id = 42;
-        cbw.function.source = 3;
+        cbw.function.source = 3;*/
         
-        claw_stack_push_c(&cbw);
-        
+       // claw_stack_push_c(&cbw);
+        /*
         claw_num *my_arr1;
         claw_byte *my_arr2;
         claw_size my_size1, my_size2;
@@ -61,15 +61,16 @@ int main(int argc, char **argv)
         claw_maths(CLAW_MATHS_ADD);
         claw_stack_pop(&sval3);
         claw_stack_drp();
+        */
+        //claw_stack_pop_c(&cbr);
         
-        claw_stack_pop_c(&cbr);
+        //if(i == 0)
+       //     printf("Size 1: %d\nSize 2: %d\nValue 1.5: %d\nValue 2.3: %d\nSValue 1: %d\nSValue 2: %d\nSValue 3: %d\nCallback Address: %d\nCallback Function~, Source ID: %d,%d\n",
+        //        my_size1, my_size2, my_arr1[5], my_arr2[3], sval1, sval2, sval3/*, cbr.address, cbr.function.id, cbr.function.source*/);
         
-        if(i == 0)
-            printf("Size 1: %d\nSize 2: %d\nValue 1.5: %d\nValue 2.3: %d\nSValue 1: %d\nSValue 2: %d\nSValue 3: %d\nCallback Address: %d\nCallback Function~, Source ID: %d,%d\n",
-                my_size1, my_size2, my_arr1[5], my_arr2[3], sval1, sval2, sval3, cbr.address, cbr.function.id, cbr.function.source);
-            
-        claw_pool_dealloc();
-        claw_pool_dealloc();
-    }
+        //claw_pool_dealloc();
+        //claw_pool_dealloc();
+        
+    //}
     return 0;
 }

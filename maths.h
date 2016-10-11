@@ -13,6 +13,5 @@ claw_error  claw_maths_cbs  (claw_num val, claw_num* res);
 claw_error  claw_maths_cbz  (claw_num val, claw_num* res);
 claw_error  claw_maths_itl  (claw_num valx, claw_num valy, claw_num* res);
 claw_error  claw_maths_sin  (claw_num val, claw_num* res);
-claw_error  claw_maths      (claw_instr action);
 
 #endif

@@ -14,8 +14,14 @@
  */
 
 #else
-    #error "Invalid target!"
+    #error "Unknown hardware target!"
 #endif
+
+/* Now define the debug output functions */
+claw_error      claw_print_string   (char* str);
+claw_error      claw_print_number   (claw_num num);
+claw_error      claw_print_newline  (void);
+claw_error      claw_read_number    (claw_num* num);
 
 #if CLAW_FILESYSTEM_SUPPORT == CLAW_TRUE
     claw_error      claw_fs_fopen           (char *filename, claw_file **file);
@@ -31,6 +37,5 @@
     claw_error      claw_progmem_rdnum      (claw_num *num);
     claw_error      claw_progmem_end        (void);
 #endif
-
 
 #endif
